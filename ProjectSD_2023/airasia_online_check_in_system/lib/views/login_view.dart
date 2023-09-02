@@ -1,4 +1,5 @@
 import 'package:airasia_online_check_in_system/main.dart';
+import 'package:airasia_online_check_in_system/views/register_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +11,7 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
-  late final TextEditingController _email;
+  late final TextEditingController _email; 
   late final TextEditingController _password;
 
   @override
@@ -33,6 +34,7 @@ class _LoginViewState extends State<LoginView> {
       appBar: AppBar(
         title: const Text('Login'),
         backgroundColor: Colors.red,
+        automaticallyImplyLeading: false,
       ),
       body: Column(
         children: [
@@ -74,22 +76,33 @@ class _LoginViewState extends State<LoginView> {
                 print('Wrong password');
               }
             }
-
             Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => const HomePage())
                 );
+
             },
             child: const Text('Login'),
           ),
+
           TextButton(
             onPressed: () {
-              Navigator.of(context).pushNamedAndRemoveUntil(
-                '/register/', 
-                (route) => false,
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const RegisterView())
                 );
             } ,
             child: const Text('Not registered yet? Register here!'),
+          ),
+
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                '/forgotPassword/', 
+                (route) => false,
+                );
+            }, 
+            child: const Text('Forgot password'),
           )
         ],
       ),

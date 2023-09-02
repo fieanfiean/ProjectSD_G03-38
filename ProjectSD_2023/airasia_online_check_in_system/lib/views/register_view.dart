@@ -1,4 +1,8 @@
+import 'package:airasia_online_check_in_system/views/login_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+// ignore: unused_import
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class RegisterView extends StatefulWidget {
@@ -67,6 +71,8 @@ class _RegisterViewState extends State<RegisterView> {
                 email: email, 
                 password: password
               );
+              final user = User(email: email);
+              createUser(user);
               print(userCredential);
               } on FirebaseAuthException catch(e) {
                 if(e.code == 'weak-password'){
@@ -81,14 +87,43 @@ class _RegisterViewState extends State<RegisterView> {
             child: const Text('Register'),
           ),
           TextButton(onPressed: (){
-            Navigator.of(context).pushNamedAndRemoveUntil(
-              '/login/', 
-              (route) => false,
-              );
+            Navigator.of(context).push(MaterialPageRoute(builder: (context)=> const LoginView()));
           }, 
           child: const Text('Already registered? Login here!'))
         ],
       ),
     );
   }
+
+  Future createUser(User user) async {
+      final docUser = FirebaseFirestore.instance.collection('User').doc();
+      user.id = docUser.id;
+      final json = user.toJson();
+      await docUser.set(json);
+    }
 }
+
+class User {
+  String id;
+  final String name;
+  final String email;
+  final String phone;
+  final String type;
+
+  User({
+    this.id = '',
+    this.name = '',
+    this.phone = '',
+    this.type = 'user',
+    required this.email
+  });
+
+  Map<String, dynamic> toJson() =>{
+    'id' : id,
+    'name' : name,
+    'email' : email,
+    'phone' : phone,
+    'type' : type,
+  };
+}
+

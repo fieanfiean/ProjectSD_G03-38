@@ -1,5 +1,9 @@
+// ignore_for_file: unused_import
+
 import 'package:airasia_online_check_in_system/firebase_options.dart';
+import 'package:airasia_online_check_in_system/views/forgot_password_view.dart';
 import 'package:airasia_online_check_in_system/views/login_view.dart';
+import 'package:airasia_online_check_in_system/views/main_page_view.dart';
 import 'package:airasia_online_check_in_system/views/register_view.dart';
 import 'package:airasia_online_check_in_system/views/verify_email_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -7,7 +11,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer' as devtools show log;
 
-void main() {
+void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
@@ -28,6 +32,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/login/':(context) => const LoginView(),
         '/register/':(context) => const RegisterView(),
+        '/forgotPassword/':(context) => const ForgotPassowrdView(),
       },
     );
   }
@@ -52,7 +57,7 @@ class HomePage extends StatelessWidget {
 
             } else {
               if (user.emailVerified){
-                return const NotesView();
+                return const MainPageView();
               } else {
                 return const VerifyEmailView();
               }
@@ -63,78 +68,10 @@ class HomePage extends StatelessWidget {
       },
     );
   }
+
+  
 }
 
-enum MenuAction { logout }
 
 
-class NotesView extends StatefulWidget {
-  const NotesView({super.key});
 
-  @override
-  State<NotesView> createState() => _NotesViewState();
-}
-
-class _NotesViewState extends State<NotesView> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Main UI'),
-        backgroundColor: Colors.red,
-        actions: [
-          PopupMenuButton<MenuAction>(
-            onSelected: (value) async {
-              switch (value) {
-                case MenuAction.logout:
-                  final shouldLogout = await showLogOutDialog(context);
-                  if (shouldLogout) {
-                    await FirebaseAuth.instance.signOut();
-                    // ignore: use_build_context_synchronously
-                    Navigator.of(context).pushNamedAndRemoveUntil(
-                      '/login/', 
-                      (_) => false,
-                    );
-                  }
-              }
-            },
-            itemBuilder:(context) {
-              return [
-                const PopupMenuItem<MenuAction>(
-                  value:MenuAction.logout, 
-                  child:Text('Log out'),
-                ),
-              ];
-            },
-          )
-        ],
-      ),
-      body: const Text('Hello World'),
-    );
-  }
-}
-
-Future<bool> showLogOutDialog(BuildContext context){
-  return showDialog<bool>(
-    context: context, 
-    builder: (context) {
-      return AlertDialog(
-        title: const Text('Log out'),
-        content: const Text('Are you sure you want to log out?'),
-        actions: [
-          TextButton(
-            onPressed: (){
-              Navigator.of(context).pop(false);
-            }, 
-            child:  const Text('Cancel')),
-          TextButton(
-            onPressed: (){
-              Navigator.of(context).pop(true);
-            }, 
-            child:  const Text('Log out'),
-          ),
-        ],
-      ); 
-    },
-  ).then((value) => value ?? false);
-}

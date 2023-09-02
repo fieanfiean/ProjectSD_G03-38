@@ -1,3 +1,4 @@
+import 'package:airasia_online_check_in_system/views/login_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -23,10 +24,32 @@ class _VerifyEmailViewState extends State<VerifyEmailView> {
           onPressed: () async {
             final user = FirebaseAuth.instance.currentUser;
             await user?.sendEmailVerification();
+            verifyEmail();
           }, 
           child: const Text('Send email verification'))
         ],
       ),
     );
+  }
+
+  Future verifyEmail() async {
+
+    showDialog(
+      context: context, 
+      barrierDismissible: false,
+      builder: (context) => Center(child:const CircularProgressIndicator()),
+    );
+
+      Navigator.pop(context); // Close the loading dialog
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content:Text('Please check your email inbox')),
+      );
+      Navigator.pop(context);
+    Navigator.popUntil(context,(route) => route.isFirst); // Close the loading dialog
+
+    Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const LoginView())
+                );
   }
 }
