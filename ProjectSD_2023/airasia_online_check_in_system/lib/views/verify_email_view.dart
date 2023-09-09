@@ -25,6 +25,10 @@ class _VerifyEmailViewState extends State<VerifyEmailView> {
             final user = FirebaseAuth.instance.currentUser;
             await user?.sendEmailVerification();
             verifyEmail();
+            Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const LoginView())
+                );
           }, 
           child: const Text('Send email verification'))
         ],
@@ -40,16 +44,13 @@ class _VerifyEmailViewState extends State<VerifyEmailView> {
       builder: (context) => Center(child:const CircularProgressIndicator()),
     );
 
-      Navigator.pop(context); // Close the loading dialog
+      // Navigator.pop(context); // Close the loading dialog
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content:Text('Please check your email inbox')),
       );
-      Navigator.pop(context);
+      //Navigator.pop(context);
     Navigator.popUntil(context,(route) => route.isFirst); // Close the loading dialog
 
-    Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => const LoginView())
-                );
+    
   }
 }

@@ -48,7 +48,6 @@ class _EditImagePageState extends State<EditImagePage> {
             isUploading = false;
           });
 
-  print('Updated URL: $downloadURL');
           // Navigate back to the previous screen.
           Navigator.pop(context,downloadURL);
         });

@@ -57,6 +57,7 @@ class DefaultFirebaseOptions {
     appId: '1:975021124988:android:f1fc1fd0d8c66bb82488f9',
     messagingSenderId: '975021124988',
     projectId: 'airasia-online-check-in-system',
+    databaseURL: "https://airasia-online-check-in-system-default-rtdb.asia-southeast1.firebasedatabase.app",
     storageBucket: 'airasia-online-check-in-system.appspot.com',
   );
 

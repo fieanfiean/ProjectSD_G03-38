@@ -1,6 +1,9 @@
 // ignore_for_file: unused_import
 
 import 'package:airasia_online_check_in_system/firebase_options.dart';
+import 'package:airasia_online_check_in_system/profile/edit_email_page.dart';
+import 'package:airasia_online_check_in_system/profile/edit_image_page.dart';
+import 'package:airasia_online_check_in_system/profile/edit_name_page.dart';
 import 'package:airasia_online_check_in_system/views/forgot_password_view.dart';
 import 'package:airasia_online_check_in_system/views/login_view.dart';
 import 'package:airasia_online_check_in_system/views/main_page_view.dart';
@@ -33,6 +36,9 @@ class MyApp extends StatelessWidget {
         '/login/':(context) => const LoginView(),
         '/register/':(context) => const RegisterView(),
         '/forgotPassword/':(context) => const ForgotPassowrdView(),
+        '/editImage': (context) => const EditImagePage(),
+        '/editName': (context) => const EditNamePage(),
+        '/editEmail': (context) => const EditEmailPage(),
       },
     );
   }

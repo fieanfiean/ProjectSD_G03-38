@@ -127,15 +127,13 @@ class _EditNamePageState extends State<EditNamePage> {
                         width: 330,
                         height: 50,
                         child: ElevatedButton(
-                          onPressed: () {
+                          onPressed: (){
+                            String updatedUsername = firstNameController.text + " " + secondNameController.text;
                             // Validate returns true if the form is valid, or false otherwise.
                              if (_formKey.currentState!.validate() &&
                                 RegExp(r'^[a-zA-Z]+$').hasMatch(firstNameController.text +
                                     secondNameController.text)) {
-                              updateUserValue(firstNameController.text +
-                                  " " +
-                                  secondNameController.text);
-                              Navigator.pop(context);
+                              updateUserValue(updatedUsername);
                               // Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ProfileDetailPage()));
                             }
                           },
@@ -157,6 +155,8 @@ class _EditNamePageState extends State<EditNamePage> {
 
     currentUser?.updateDisplayName(displayName);
     await currentUser?.reload();
+    Navigator.pop(context,displayName);
+
 }
 
 

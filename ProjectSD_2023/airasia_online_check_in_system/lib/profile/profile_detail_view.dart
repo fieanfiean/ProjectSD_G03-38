@@ -27,6 +27,9 @@ class _ProfileDetailPageState extends State<ProfileDetailPage> {
 
   final profilePictureKey = GlobalKey();
     String _userPhotoURL = FirebaseAuth.instance.currentUser?.photoURL ?? '';
+    String _userName = FirebaseAuth.instance.currentUser?.displayName ?? '';
+    String _email = FirebaseAuth.instance.currentUser?.email ?? '';
+
 
   
   @override
@@ -45,6 +48,38 @@ class _ProfileDetailPageState extends State<ProfileDetailPage> {
 
   //   });
   // }
+
+  void navigateEditPage(Widget editForm) async {
+    // Navigator.of(context).push(MaterialPageRoute(builder: (context) => editForm));
+            final updatedURL = await Navigator.of(context).push<String>(MaterialPageRoute(builder: (context) => editForm));
+
+
+      if (editForm == const EditImagePage()){
+          setState(() {
+            _userPhotoURL = updatedURL!;
+          });
+      }
+      
+      else if(editForm == EditNamePage()){
+        final updatedUsername = await Navigator.of(context).push<String>(MaterialPageRoute(builder: (context) => editForm));
+        if (updatedUsername != null) {
+          setState(() {
+            _userName = updatedUsername;
+          });
+        }
+      }
+
+      else if(editForm == EditEmailPage()){
+        final updatedEmail = await Navigator.of(context).push<String>(MaterialPageRoute(builder: (context) => editForm));
+        if (updatedEmail != null) {
+        setState(() {
+          // _email = updatedEmail;
+        });
+      }    
+      }
+  }
+
+  
 
 
   @override
@@ -67,13 +102,13 @@ class _ProfileDetailPageState extends State<ProfileDetailPage> {
                     navigateEditPage(const EditImagePage());
                   },
                   child: DisplayImage(
-                      imagePath: user?.photoURL??'',
+                      imagePath: _userPhotoURL,
                       onPressed: () {},
                       )
                 ),
-                buildUserInfoDisplay(user?.displayName ?? '', 'Name', const EditNamePage()),
+                buildUserInfoDisplay(_userName, 'Name', const EditNamePage()),
                 //buildUserInfoDisplay(user?.phoneNumber ?? '', 'Phone', const EditPhoneNumberPage()),
-                buildUserInfoDisplay(user?.email ?? '', 'Email', const EditEmailPage()),
+                buildUserInfoDisplay(_email, 'Email', const EditEmailPage()),
         Padding(
             padding: EdgeInsets.only(top: 150),
             child: Align(
@@ -150,19 +185,8 @@ class _ProfileDetailPageState extends State<ProfileDetailPage> {
     );
 
   // Handles navigation and prompts refresh.
-  void navigateEditPage(Widget editForm) async {
-    // Navigator.of(context).push(MaterialPageRoute(builder: (context) => editForm));
-    final updatedURL = await Navigator.of(context).push<String>(MaterialPageRoute(builder: (context) => editForm));
-  if (updatedURL != null) {
-    print('Received updated URL: $updatedURL');
-
-
-    // Update the user's photo URL
-    setState(() {
-      _userPhotoURL = updatedURL;
-    });
-  }
-  }
+  
+  
 
   void showSnackbar(BuildContext context, String message) {
     ScaffoldMessenger.of(context).showSnackBar(
@@ -202,30 +226,31 @@ class DisplayImage extends StatelessWidget {
   }
 
   // Builds Profile Image
-  Widget buildImage(Color color) {
-    // ignore: unnecessary_null_comparison
-    if (imagePath != null && imagePath.isNotEmpty && imagePath.startsWith('https://')) {
-      // Load the image from a network URL
-      return CircleAvatar(
-        radius: 75,
-        backgroundColor: color,
-        child: CircleAvatar(
-          backgroundImage: NetworkImage(imagePath),
-          radius: 70,
-        ),
-      );
-    } else {
-      // Use the default user image from assets
-      return CircleAvatar(
-        radius: 75,
-        backgroundColor: color,
-        child: const CircleAvatar(
-          backgroundImage: AssetImage('assets/default_user.png'),
-          radius: 70,
-        ),
-      );
-    }
+ Widget buildImage(Color color) {
+  // Check if imagePath is null or empty, and use the default user image in that case
+  if (imagePath == null || imagePath.isEmpty || !imagePath.startsWith('https://')) {
+    // Use the default user image from assets
+    return CircleAvatar(
+      radius: 75,
+      backgroundColor: color,
+      child: const CircleAvatar(
+        backgroundImage: AssetImage('assets/default_user.png'),
+        radius: 70,
+      ),
+    );
+  } else {
+    // Load the image from a network URL
+    return CircleAvatar(
+      radius: 75,
+      backgroundColor: color,
+      child: CircleAvatar(
+        backgroundImage: NetworkImage(imagePath),
+        radius: 70,
+      ),
+    );
   }
+}
+
 
   // Builds Edit Icon on Profile Picture
   Widget buildEditIcon(Color color) => buildCircle(
