@@ -952,8 +952,8 @@
 
                 // const updates = {};
                 // updates['/' + uid + '/' + newPostKey] = postData;
-
-                updateEmail(user,document.getElementById("Email").value ).then(() => {
+                if(postData.username != null && postData.type != null && postData.email != null){
+                  updateEmail(user,document.getElementById("Email").value ).then(() => {
                   // Email updated!
                   update(ref(db, 'user/' + uid),postData);
                   alert("Update Successful");
@@ -963,8 +963,8 @@
                   // ...
                   alert(error);
                 });
-
-                alert
+                }
+                
               })
             });
             

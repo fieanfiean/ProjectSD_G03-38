@@ -1,3 +1,4 @@
+import 'package:airasia_online_check_in_system/main.dart';
 import 'package:airasia_online_check_in_system/views/login_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 // ignore: unused_import
@@ -74,6 +75,7 @@ class _RegisterViewState extends State<RegisterView> {
                           keyboardType: TextInputType.emailAddress,
                           decoration: const InputDecoration(
                               labelText: 'Your email address'),
+                               
                           controller: _email,
                         ))),
           Padding(
@@ -128,10 +130,14 @@ class _RegisterViewState extends State<RegisterView> {
                     );
                     // final user = User(email: email);
                     // createUser(user);
+                    final user = FirebaseAuth.instance.currentUser?.uid;
                     final database = FirebaseDatabase.instance.ref();
-                    final userData = database.child('user');
+                    final userData = database.child('user/' + user!);
                     userData
-                    .set({'email': email,'verify': 'no',});
+                    .set({'email': email,'type': 'passenger', 'uid':user});
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=> const HomePage()));
+
+
                     //print(userCredential);
                     } on FirebaseAuthException catch(e) {
                       if(e.code == 'weak-password'){
@@ -171,11 +177,15 @@ class _RegisterViewState extends State<RegisterView> {
     );
   }
 
+
+
   Future createUser(User user) async {
-      final docUser = FirebaseFirestore.instance.collection('User').doc();
-      user.id = docUser.id;
-      final json = user.toJson();
-      await docUser.set(json);
+      // final docUser = FirebaseFirestore.instance.collection('User').doc();
+      // user.id = docUser.id;
+      // final json = user.toJson();
+      // await docUser.set(json);
+
+      
     }
 }
 

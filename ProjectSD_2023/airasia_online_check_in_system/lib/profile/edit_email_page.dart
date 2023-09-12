@@ -196,6 +196,25 @@ void updateUserValue(String email) async{
                                 // Navigator.pop(context,emailController.text);
 
                               }
+                              else{
+                                showDialog(
+                                  context: context,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        title: Text('Alert'),
+                                        content: Text("Invalid email"),
+                                        actions: <Widget>[
+                                          TextButton(
+                                            child: Text('OK'),
+                                            onPressed: () {
+                                              Navigator.of(context).pop(); // Close the dialog
+                                            },
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                              }
                             },
                             child: const Text(
                               'Update',

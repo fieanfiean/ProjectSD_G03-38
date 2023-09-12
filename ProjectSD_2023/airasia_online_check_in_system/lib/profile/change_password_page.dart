@@ -103,10 +103,21 @@ Future<void> changePassword(String currentPassword, String newPassword) async {
                           height: 50,
                           child: ElevatedButton(
                             onPressed: () {
-                                if(passwordController.text == confirmPasswordController.text){
-                                  changePassword(oldPasswordController.text,confirmPasswordController.text);
+                                if (passwordController.text == confirmPasswordController.text) {
+                                  if (passwordController.text != oldPasswordController.text) {
+                                    // Only change the password if the old password is different from the new password
+                                    changePassword(oldPasswordController.text, confirmPasswordController.text);
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(content: Text('Password Successfully Changed')),
+                                    );
+                                  } else {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(content: Text('New password should be different from the old password')),
+                                    );
+                                  }
+                                } else {
                                   ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(content:Text('Password Sucessfully Change')),
+                                    SnackBar(content: Text('Passwords do not match')),
                                   );
                                 }
                             },
