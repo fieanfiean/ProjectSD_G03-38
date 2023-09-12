@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:airasia_online_check_in_system/main.dart';
+import 'package:airasia_online_check_in_system/views/forgot_password_view.dart';
 import 'package:airasia_online_check_in_system/views/register_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -162,10 +163,10 @@ class _LoginViewState extends State<LoginView> {
           
           TextButton(
             onPressed: () {
-              Navigator.of(context).pushNamedAndRemoveUntil(
-                '/forgotPassword/', 
-                (route) => false,
-                );
+              Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const ForgotPassowrdView())
+                      );
             }, 
             child: const Text('Forgot password'),
           ),

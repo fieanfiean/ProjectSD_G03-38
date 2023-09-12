@@ -43,15 +43,30 @@ class _ForgotPassowrdViewState extends State<ForgotPassowrdView> {
       ),
       body: Column(
         children: [
-          TextField(
-            controller: _email,
-            enableSuggestions: false,
-            autocorrect: false,
-            keyboardType: TextInputType.emailAddress,
-            decoration: const InputDecoration(
-              hintText: 'Enter your email here'
-            ),
-          ),
+          // TextField(
+          //   controller: _email,
+          //   enableSuggestions: false,
+          //   autocorrect: false,
+          //   keyboardType: TextInputType.emailAddress,
+          //   decoration: const InputDecoration(
+          //     hintText: 'Enter your email here'
+          //   ),
+          // ),
+
+          Padding(
+            padding: EdgeInsets.only(top: 40),
+            child: SizedBox(
+                height: 100,
+                width: 320,
+                child: TextFormField(
+                  enableSuggestions: false,
+                  autocorrect: false,
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: const InputDecoration(
+                      labelText: 'Your email address'),
+                  controller: _email,
+                ))),
+
           ElevatedButton.icon(
             onPressed: resetPassword, 
             style: ElevatedButton.styleFrom(
