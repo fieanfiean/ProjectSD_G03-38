@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Users / Profile - NiceAdmin Bootstrap Template</title>
+  <title>Pages / Contact - NiceAdmin Bootstrap Template</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -218,7 +218,7 @@
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
               <h6 id="userNameH6">Kevin Anderson</h6>
-              <span id="userType">Web Designer</span>
+              <span id="usertype">Web Designer</span>
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -275,7 +275,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="dashboard.html">
+        <a class="nav-link collapsed" href="dashboard.html  ">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
@@ -454,7 +454,7 @@
       <li class="nav-heading">Pages</li>
 
       <li class="nav-item">
-        <a class="nav-link " href="users-profile.html">
+        <a class="nav-link collapsed" href="users-profile.html">
           <i class="bi bi-person"></i>
           <span>Profile</span>
         </a>
@@ -475,7 +475,7 @@
       </li><!-- End About Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="contact.html">
+        <a class="nav-link " href="pages-contact.html">
           <i class="bi bi-envelope"></i>
           <span>Contact</span>
         </a>
@@ -516,310 +516,121 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Profile</h1>
+      <h1>Contact</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item">Users</li>
-          <li class="breadcrumb-item active">Profile</li>
+          <li class="breadcrumb-item"><a href="dashboard.html">Home</a></li>
+          <li class="breadcrumb-item">Pages</li>
+          <li class="breadcrumb-item active">Contact</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
 
-    <section class="section profile">
-      <div class="row">
-        <div class="col-xl-4">
+    <section class="section contact">
 
-          <div class="card">
-            <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+      <div class="row gy-4">
 
-              <!-- <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle"> -->
-              <h2 id="fullNameProfile">Kevin Anderson</h2>
-              <h3 id="jobProfile">Web Designer</h3>
-              <div class="social-links mt-2">
-                <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-                <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-                <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-                <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+        <div class="col-xl-6">
+
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="info-box card">
+                <i class="bi bi-geo-alt"></i>
+                <h3>Address</h3>
+                <p id="contact-address"></p>
+                <button class="btn btn-primary" id="editAddressButton">Edit</button>
+            </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="info-box card">
+                <i class="bi bi-telephone"></i>
+                <h3>Call Us</h3>
+                <p id="contact-phone"></p>
+                <button id="editPhoneButton" class="btn btn-primary">Edit</button>
+            </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="info-box card">
+                <i class="bi bi-envelope"></i>
+                <h3>Email Us</h3>
+                <p id="contact-email"></p>
+                <button id="editEmailButton" class="btn btn-primary">Edit</button>
+
               </div>
             </div>
+            <!-- <div class="col-lg-6">
+              <div class="info-box card">
+                <i class="bi bi-clock"></i>
+                <h3>Open Hours</h3>
+                <p>Monday - Friday<br>9:00AM - 05:00PM</p>
+              </div>
+            </div> -->
           </div>
 
         </div>
 
-        <div class="col-xl-8">
-
-          <div class="card">
-            <div class="card-body pt-3">
-              <!-- Bordered Tabs -->
-              <ul class="nav nav-tabs nav-tabs-bordered">
-
-                <li class="nav-item">
-                  <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Overview</button>
-                </li>
-
-                <li class="nav-item">
-                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit Profile</button>
-                </li>
-
-                <li class="nav-item">
-                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-settings">Settings</button>
-                </li>
-
-                <li class="nav-item">
-                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Change Password</button>
-                </li>
-
-              </ul>
-              <div class="tab-content pt-2">
-
-                <div class="tab-pane fade show active profile-overview" id="profile-overview">
-                  <!-- <h5 class="card-title">About</h5>
-                  <p class="small fst-italic">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</p> -->
-
-                  <h5 class="card-title">Profile Details</h5>
-
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label ">Full Name</div>
-                    <div class="col-lg-9 col-md-8" id="fullNameProfileDetail">Kevin Anderson</div>
-                  </div>
-
-                  <!-- <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Company</div>
-                    <div class="col-lg-9 col-md-8">Lueilwitz, Wisoky and Leuschke</div>
-                  </div> -->
-
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Job</div>
-                    <div class="col-lg-9 col-md-8" id="job">Web Designer</div>
-                  </div>
-
-                  <!-- <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Country</div>
-                    <div class="col-lg-9 col-md-8">USA</div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Address</div>
-                    <div class="col-lg-9 col-md-8">A108 Adam Street, New York, NY 535022</div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Phone</div>
-                    <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
-                  </div> -->
-
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Email</div>
-                    <div class="col-lg-9 col-md-8" id="userEmail">k.anderson@example.com</div>
-                  </div>
-
+        <!-- Modal for Editing -->
+        <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel">Edit Content</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-
-                <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
-
-                  <!-- Profile Edit Form -->
-                  <form>
-                    <!-- <div class="row mb-3">
-                      <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
-                      <div class="col-md-8 col-lg-9">
-                        <img src="assets/img/profile-img.jpg" alt="Profile">
-                        <div class="pt-2">
-                          <a href="#" class="btn btn-primary btn-sm" title="Upload new profile image"><i class="bi bi-upload"></i></a>
-                          <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
-                        </div>
-                      </div>
-                    </div> -->
-
-                    <div class="row mb-3">
-                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Full Name</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="fullName" type="text" class="form-control" id="fullName" value="">
-                      </div>
-                    </div>
-
-                    <!-- <div class="row mb-3">
-                      <label for="about" class="col-md-4 col-lg-3 col-form-label">About</label>
-                      <div class="col-md-8 col-lg-9">
-                        <textarea name="about" class="form-control" id="about" style="height: 100px">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</textarea>
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="company" class="col-md-4 col-lg-3 col-form-label">Company</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="company" type="text" class="form-control" id="company" value="Lueilwitz, Wisoky and Leuschke">
-                      </div>
-                    </div> -->
-
-                    <div class="row mb-3">
-                      <label for="Job" class="col-md-4 col-lg-3 col-form-label">Job</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="job" type="text" class="form-control" id="Job" value="">
-                      </div>
-                    </div>
-
-                    <!-- <div class="row mb-3">
-                      <label for="Country" class="col-md-4 col-lg-3 col-form-label">Country</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="country" type="text" class="form-control" id="Country" value="USA">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="Address" class="col-md-4 col-lg-3 col-form-label">Address</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="address" type="text" class="form-control" id="Address" value="A108 Adam Street, New York, NY 535022">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Phone</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="phone" type="text" class="form-control" id="Phone" value="(436) 486-3538 x29071">
-                      </div>
-                    </div> -->
-
-                    <div class="row mb-3">
-                      <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="email" type="email" class="form-control" id="Email" value="">
-                      </div>
-                    </div>
-
-                    <!-- <div class="row mb-3">
-                      <label for="Twitter" class="col-md-4 col-lg-3 col-form-label">Twitter Profile</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="twitter" type="text" class="form-control" id="Twitter" value="https://twitter.com/#">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="Facebook" class="col-md-4 col-lg-3 col-form-label">Facebook Profile</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="facebook" type="text" class="form-control" id="Facebook" value="https://facebook.com/#">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="Instagram" class="col-md-4 col-lg-3 col-form-label">Instagram Profile</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="instagram" type="text" class="form-control" id="Instagram" value="https://instagram.com/#">
-                      </div>
-                    </div> -->
-
-                    <!-- <div class="row mb-3">
-                      <label for="Linkedin" class="col-md-4 col-lg-3 col-form-label">Linkedin Profile</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="linkedin" type="text" class="form-control" id="Linkedin" value="https://linkedin.com/#">
-                      </div>
-                    </div> -->
-
-                    <div class="text-center">
-                      <button type="submit" class="btn btn-primary" id="updateProfile">Save Changes</button>
-                    </div>
-                  </form><!-- End Profile Edit Form -->
-
+                <div class="modal-body">
+                <input type="text" id="editField" class="form-control">
                 </div>
-
-                <div class="tab-pane fade pt-3" id="profile-settings">
-
-                  <!-- Settings Form -->
-                  <form>
-
-                    <div class="row mb-3">
-                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Email Notifications</label>
-                      <div class="col-md-8 col-lg-9">
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" id="changesMade" checked>
-                          <label class="form-check-label" for="changesMade">
-                            Changes made to your account
-                          </label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" id="newProducts" checked>
-                          <label class="form-check-label" for="newProducts">
-                            Information on new products and services
-                          </label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" id="proOffers">
-                          <label class="form-check-label" for="proOffers">
-                            Marketing and promo offers
-                          </label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" id="securityNotify" checked disabled>
-                          <label class="form-check-label" for="securityNotify">
-                            Security alerts
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="text-center">
-                      <button type="submit" class="btn btn-primary">Save Changes</button>
-                    </div>
-                  </form><!-- End settings Form -->
-
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="saveButton">Save</button>
                 </div>
-
-                <div class="tab-pane fade pt-3" id="profile-change-password">
-                  <!-- Change Password Form -->
-                  <form>
-
-                    <div class="row mb-3">
-                      <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="password" type="password" class="form-control" id="currentPassword">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">New Password</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="newpassword" type="password" class="form-control" id="newPassword">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Re-enter New Password</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="renewpassword" type="password" class="form-control" id="renewPassword">
-                      </div>
-                    </div>
-
-                    <div class="text-center">
-                      <button type="submit" class="btn btn-primary" id="changePassword">Change Password</button>
-                    </div>
-                  </form><!-- End Change Password Form -->
-
-                </div>
-
-              </div><!-- End Bordered Tabs -->
-
             </div>
+            </div>
+        </div>
+
+        <!-- ... (your footer and scripts) ... -->
+
+        <!-- <div class="col-xl-6">
+          <div class="card p-4">
+            <form action="forms/contact.php" method="post" class="php-email-form">
+              <div class="row gy-4">
+
+                <div class="col-md-6">
+                  <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+                </div>
+
+                <div class="col-md-6 ">
+                  <input type="email" class="form-control" name="email" placeholder="Your Email" required>
+                </div>
+
+                <div class="col-md-12">
+                  <input type="text" class="form-control" name="subject" placeholder="Subject" required>
+                </div>
+
+                <div class="col-md-12">
+                  <textarea class="form-control" name="message" rows="6" placeholder="Message" required></textarea>
+                </div>
+
+                <div class="col-md-12 text-center">
+                  <div class="loading">Loading</div>
+                  <div class="error-message"></div>
+                  <div class="sent-message">Your message has been sent. Thank you!</div>
+
+                  <button type="submit">Send Message</button>
+                </div>
+
+              </div>
+            </form>
           </div>
 
-        </div>
+        </div> -->
+
       </div>
+
     </section>
 
   </main><!-- End #main -->
 
-  <!-- ======= Footer ======= -->
-  <footer id="footer" class="footer">
-    <div class="copyright">
-      &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
-    </div>
-    <div class="credits">
-      <!-- All the links in the footer should remain intact. -->
-      <!-- You can delete the links only if you purchased the pro version. -->
-      <!-- Licensing information: https://bootstrapmade.com/license/ -->
-      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-    </div>
-  </footer><!-- End Footer -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
@@ -833,18 +644,18 @@
   <script src="assets/vendor/tinymce/tinymce.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
 
+
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
     import { getDatabase,ref,set,get,child, onValue, update } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
-    import { getAuth, onAuthStateChanged, updatePassword, updateEmail } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js"
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js"
     // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
     
     // Your web app's Firebase configuration
-    document.addEventListener("DOMContentLoaded", function () {
       // Your Firebase configuration
       const firebaseConfig = {
         // ... (your Firebase config here)
@@ -862,28 +673,17 @@
       const db = getDatabase(app);
       const auth = getAuth();
       const user = auth.currentUser;
-    //   if (user) {
-  
-    //     // User Signed In
-    //     console.log("User Signed In");
-    //     // ...
-    //     } else {
-    //     // No user is signed in.
-    //     console.log("User Signed Out");
-    //     }
+    
+    document.addEventListener("DOMContentLoaded", function () {
 
-        onAuthStateChanged(auth, (user) => {
+    onAuthStateChanged(auth, (user) => {
         const userNameSpan = document.getElementById('userNameSpan');
         const userNameH6 = document.getElementById('userNameH6');
-        const userType = document.getElementById('userType');
-        const fullName = document.getElementById('fullNameProfileDetail');
-        const job = document.getElementById('job');
-        const userEmail = document.getElementById('userEmail');
-        const fullNameProfile = document.getElementById('fullNameProfile');
-        const jobProfile = document.getElementById('jobProfile');
+        const userType = document.getElementById('usertype');
+        const contactAddress = document.getElementById('contact-address');
+        const contactPhone = document.getElementById('contact-phone');
+        const contactEmail = document.getElementById('contact-email');
 
-
-        
 
         if (user) {
             // User is signed in, see docs for a list of available properties
@@ -897,82 +697,23 @@
                 userNameSpan.innerHTML = data.username;
                 userNameH6.innerHTML = data.username;
                 userType.innerHTML = data.type;
-                fullName.innerHTML = data.username;
-                job.innerHTML = data.type;
-                userEmail.innerHTML = data.email;
-                fullNameProfile.innerHTML = data.username;
-                jobProfile.innerHTML = data.type;
-                document.getElementById("fullName").value = data.username;
-                document.getElementById("Job").value = data.type;
-                document.getElementById("Email").value = data.email;
-                
 
+            });
 
-
-                document.getElementById("changePassword").addEventListener('click',function (e){
-                var currentPassword = document.getElementById('currentPassword').value;
-                var newPassword = document.getElementById('newPassword').value;
-                var renewPassword = document.getElementById('renewPassword').value;
-
-                e.preventDefault();
-                if (uid) {
-                    // Check if the user is authenticated with email and password
-                    if (user.providerData[0].providerId === 'password') {
-                        if (newPassword == renewPassword && newPassword != currentPassword) {
-                        updatePassword(user, newPassword)
-                            .then(() => {
-                            // Password changed successfully
-                            alert('Password changed successfully');
-                            // You can redirect the user or display a success message here
-                            })
-                            .catch((error) => {
-                            // Handle errors
-                            console.error('Error changing password:', error); // Use console.error
-                            if(error == Error (auth/requires-recent-login)){
-                              alert("Require Relogin!!!");
-
-                            }
-                            // Display an error message to the user
-                            });
-                        } else {
-                        alert('Passwords do not match or new password is the same as the current password.');
-                        }
-                    } else {
-                        alert('User is not authenticated with email and password.');
-                    }
-                    } else {
-                    alert('User is not signed in');
-                }
-              })
-
-
-
-              document.getElementById("updateProfile").addEventListener('click',function (e){
-                const postData = {
-                  username: document.getElementById("fullName").value,
-                  type:     document.getElementById("Job").value,
-                  email:    document.getElementById("Email").value,
-                }
-
-                e.preventDefault();
-                // const newPostKey = push(child(ref(db), uid)).key;
-
-                // const updates = {};
-                // updates['/' + uid + '/' + newPostKey] = postData;
-                if(postData.username != null && postData.type != null && postData.email != null){
-                  updateEmail(user,document.getElementById("Email").value ).then(() => {
-                  // Email updated!
-                  update(ref(db, 'user/' + uid),postData);
-                  alert("Update Successful");
-                  // ...
-                }).catch((error) => {
-                  // An error occurred
-                  // ...
-                  alert(error);
-                });
-                }
-                
-              })
+            const addressRef = ref(db, 'contactUs/address');
+            onValue(addressRef, (snapshot) => {
+                const data = snapshot.val();
+                contactAddress.innerHTML = data.content;
+            });
+            const phoneRef = ref(db, 'contactUs/phone');
+            onValue(phoneRef, (snapshot) => {
+                const data = snapshot.val();
+                contactPhone.innerHTML = data.content;
+            });
+            const emailRef = ref(db, 'contactUs/email');
+            onValue(emailRef, (snapshot) => {
+                const data = snapshot.val();
+                contactEmail.innerHTML = data.content;
             });
             
             // ...
@@ -981,9 +722,7 @@
             // ...
             console.log("sign out");
         }
-
-        
-      });
+        });
 
         logOutItem.addEventListener('click', function (event) {
             event.preventDefault(); // Prevent the default link behavior
@@ -999,15 +738,76 @@
             console.error('Error signing out:', error);
             });
         });
+
+        document.getElementById('editAddressButton').addEventListener('click', function () {
+            showEditModal('contact-address');
+        });
+
+        document.getElementById('editPhoneButton').addEventListener('click', function () {
+            showEditModal('contact-phone');
+        });
+
+        document.getElementById('editEmailButton').addEventListener('click', function () {
+            showEditModal('contact-email');
+        });
+
+        document.getElementById('saveButton').addEventListener('click', function () {
+            saveChanges();
+        });
+
+        function showEditModal(id) {
+      const element = document.getElementById(id);
+      const currentValue = element.textContent.trim();
+
+
+      // Set the input field value in the modal
+      const editField = document.getElementById('editField');
+      editField.value = currentValue;
+
+      const editModal = document.getElementById('editModal');
+      editModal.setAttribute('data-element-id', id);
+
+      // Show the modal
+      const modal = new bootstrap.Modal(document.getElementById('editModal'));
+      modal.show();
+    }
+        
+        function saveChanges() {
+      // Get the edited value from the input field in the modal
+      const elementId = document.getElementById('editModal').getAttribute('data-element-id');
+      const editedValue = document.getElementById('editField').value;
+      if(elementId == 'contact-address'){
+        update(ref(db, 'contactUs/address'),
+            {
+                content: editedValue
+            })
+      }else if(elementId == 'contact-phone'){
+        update(ref(db, 'contactUs/phone'),
+            {
+                content: editedValue
+            })
+      }else if(elementId == 'contact-email'){
+        update(ref(db, 'contactUs/email'),
+            {
+                content: editedValue
+            })
+      }else{
+        console.log("error");
+      }
+
       
+      
+      alert("Update Successful");
+        window.location.href = 'contact.html'; 
+    }
     });
 
+    
+
+
   </script>
+  
 
 </body>
 
 </html>
-
-
-
-
