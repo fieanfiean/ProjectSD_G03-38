@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Dashboard </title>
+  <title>Assign Staff </title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -48,7 +48,7 @@
     <div class="d-flex align-items-center justify-content-between">
       <a href="dashboard.html" class="logo d-flex align-items-center">
         <img src="assets/img/airasia-logo.png" alt="">
-        <span class="d-none d-lg-block">NiceAdmin</span>
+        <span class="d-none d-lg-block">AirAsia</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -484,9 +484,9 @@
       </li><!-- End Contact Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="assign-staff.html">
+        <a class="nav-link collapsed" href="pages-register.html">
           <i class="bi bi-card-list"></i>
-          <span>Staff</span>
+          <span>Register</span>
         </a>
       </li><!-- End Register Page Nav -->
 
@@ -518,24 +518,54 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Dashboard</h1>
+      <h1>Assign Staff</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="dashboard.html">Home</a></li>
-          <li class="breadcrumb-item active">Dashboard</li>
+          <li class="breadcrumb-item active">Assign Staff</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
 
     <section class="section dashboard">
-      <div class="row">
+        <div id="container">
+            <h1 style="margin-top: 0;">Staff Table</h1>
+            <div id="input-container">
+                <input type="text" id="name-input" placeholder="Enter name">
+                <input type="email" id="email-input" placeholder="Enter email">
+                <button id="add-btn">Add</button>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body"></tbody>
+            </table>
+            <div id="update-container">
+                <input type="text" id="update-name-input">
+                <input type="text" id="update-email-input">
+                <button id="update-btn">Update</button>
+                <button id="cancel-btn">Cancel</button>
+            </div>
+        </div>
+
+
+
+
+
+      <!-- <div class="row"> -->
 
         <!-- Left side columns -->
-        <div class="col-lg-8">
-          <div class="row">
+        <!-- <div class="col-lg-8">
+          <div class="row"> -->
 
             <!-- Sales Card -->
-            <div class="col-xxl-4 col-md-6">
+            <!-- <div class="col-xxl-4 col-md-6">
               <div class="card info-card sales-card">
 
                 <div class="filter">
@@ -566,11 +596,11 @@
                   </div>
                 </div>
 
-              </div>
+              </div> -->
             </div><!-- End Sales Card -->
 
             <!-- Revenue Card -->
-            <div class="col-xxl-4 col-md-6">
+            <!-- <div class="col-xxl-4 col-md-6">
               <div class="card info-card revenue-card">
 
                 <div class="filter">
@@ -601,11 +631,11 @@
                   </div>
                 </div>
 
-              </div>
+              </div> -->
             </div><!-- End Revenue Card -->
 
             <!-- Customers Card -->
-            <div class="col-xxl-4 col-xl-12">
+            <!-- <div class="col-xxl-4 col-xl-12">
 
               <div class="card info-card customers-card">
 
@@ -637,12 +667,12 @@
                   </div>
 
                 </div>
-              </div>
+              </div> -->
 
             </div><!-- End Customers Card -->
 
             <!-- Reports -->
-            <div class="col-12">
+            <!-- <div class="col-12">
               <div class="card">
 
                 <div class="filter">
@@ -659,10 +689,10 @@
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title">Reports <span>/Today</span></h5>
+                  <h5 class="card-title">Reports <span>/Today</span></h5> -->
 
                   <!-- Line Chart -->
-                  <div id="reportsChart"></div>
+                  <!-- <div id="reportsChart"></div>
 
                   <script>
                     document.addEventListener("DOMContentLoaded", () => {
@@ -715,7 +745,7 @@
                         }
                       }).render();
                     });
-                  </script>
+                  </script> -->
                   <!-- End Line Chart -->
 
                 </div>
@@ -724,7 +754,7 @@
             </div><!-- End Reports -->
 
             <!-- Recent Sales -->
-            <div class="col-12">
+            <!-- <div class="col-12">
               <div class="card recent-sales overflow-auto">
 
                 <div class="filter">
@@ -794,11 +824,11 @@
 
                 </div>
 
-              </div>
+              </div> -->
             </div><!-- End Recent Sales -->
 
             <!-- Top Selling -->
-            <div class="col-12">
+            <!-- <div class="col-12">
               <div class="card top-selling overflow-auto">
 
                 <div class="filter">
@@ -868,7 +898,7 @@
 
                 </div>
 
-              </div>
+              </div> -->
             </div><!-- End Top Selling -->
 
           </div>
@@ -878,7 +908,7 @@
         <div class="col-lg-4">
 
           <!-- Recent Activity -->
-          <div class="card">
+          <!-- <div class="card">
             <div class="filter">
               <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
               <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
@@ -902,47 +932,47 @@
                   <i class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
                   <div class="activity-content">
                     Quia quae rerum <a href="#" class="fw-bold text-dark">explicabo officiis</a> beatae
-                  </div>
+                  </div> -->
                 </div><!-- End activity item-->
 
-                <div class="activity-item d-flex">
+                <!-- <div class="activity-item d-flex">
                   <div class="activite-label">56 min</div>
                   <i class='bi bi-circle-fill activity-badge text-danger align-self-start'></i>
                   <div class="activity-content">
                     Voluptatem blanditiis blanditiis eveniet
-                  </div>
+                  </div> -->
                 </div><!-- End activity item-->
 
-                <div class="activity-item d-flex">
+                <!-- <div class="activity-item d-flex">
                   <div class="activite-label">2 hrs</div>
                   <i class='bi bi-circle-fill activity-badge text-primary align-self-start'></i>
                   <div class="activity-content">
                     Voluptates corrupti molestias voluptatem
-                  </div>
+                  </div> -->
                 </div><!-- End activity item-->
 
-                <div class="activity-item d-flex">
+                <!-- <div class="activity-item d-flex">
                   <div class="activite-label">1 day</div>
                   <i class='bi bi-circle-fill activity-badge text-info align-self-start'></i>
                   <div class="activity-content">
                     Tempore autem saepe <a href="#" class="fw-bold text-dark">occaecati voluptatem</a> tempore
-                  </div>
+                  </div> -->
                 </div><!-- End activity item-->
 
-                <div class="activity-item d-flex">
+                <!-- <div class="activity-item d-flex">
                   <div class="activite-label">2 days</div>
                   <i class='bi bi-circle-fill activity-badge text-warning align-self-start'></i>
                   <div class="activity-content">
                     Est sit eum reiciendis exercitationem
-                  </div>
+                  </div> -->
                 </div><!-- End activity item-->
 
-                <div class="activity-item d-flex">
+                <!-- <div class="activity-item d-flex">
                   <div class="activite-label">4 weeks</div>
                   <i class='bi bi-circle-fill activity-badge text-muted align-self-start'></i>
                   <div class="activity-content">
                     Dicta dolorem harum nulla eius. Ut quidem quidem sit quas
-                  </div>
+                  </div> -->
                 </div><!-- End activity item-->
 
               </div>
@@ -951,7 +981,7 @@
           </div><!-- End Recent Activity -->
 
           <!-- Budget Report -->
-          <div class="card">
+          <!-- <div class="card">
             <div class="filter">
               <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
               <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
@@ -1021,11 +1051,11 @@
                 });
               </script>
 
-            </div>
+            </div> -->
           </div><!-- End Budget Report -->
 
           <!-- Website Traffic -->
-          <div class="card">
+          <!-- <div class="card">
             <div class="filter">
               <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
               <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
@@ -1096,14 +1126,14 @@
                       ]
                     }]
                   });
-                });
+                }); -->
               </script>
 
             </div>
           </div><!-- End Website Traffic -->
 
           <!-- News & Updates Traffic -->
-          <div class="card">
+          <!-- <div class="card">
             <div class="filter">
               <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
               <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
@@ -1149,7 +1179,7 @@
                   <img src="assets/img/news-5.jpg" alt="">
                   <h4><a href="#">Et dolores corrupti quae illo quod dolor</a></h4>
                   <p>Odit ut eveniet modi reiciendis. Atque cupiditate libero beatae dignissimos eius...</p>
-                </div>
+                </div> -->
 
               </div><!-- End sidebar recent posts-->
 
@@ -1164,16 +1194,16 @@
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
-  <footer id="footer" class="footer">
+  <!-- <footer id="footer" class="footer">
     <div class="copyright">
       &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
     </div>
-    <div class="credits">
+    <div class="credits"> -->
       <!-- All the links in the footer should remain intact. -->
       <!-- You can delete the links only if you purchased the pro version. -->
       <!-- Licensing information: https://bootstrapmade.com/license/ -->
       <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      <!-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> -->
     </div>
   </footer><!-- End Footer -->
 
@@ -1191,6 +1221,17 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script>
+    //variables
+    const nameInput = document.getElementById("name-input");
+    const emailInput = document.getElementById("email-input");
+    const addBtn = document.getElementById("add-btn");
+    const tableBody = document.getElementById("table-body");
+    const updateNameInput = document.getElementById("update-name-input");
+    const updatEmailInput = document.getElementById("update-email-input");
+    const updateBtn = document.getElementById("update-btn");
+    const cancelBtn = document.getElementById("cancel-btn");
+  </script>
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
@@ -1245,6 +1286,12 @@
                 userNameSpan.innerHTML = data.username;
                 userNameH6.innerHTML = data.username;
                 userType.innerHTML = data.type;
+                tableBody.innerHTML = "";
+                while(data != 0){
+                    if(data.type == staff){
+                        
+                    }
+                }
 
             });
             

@@ -8,7 +8,7 @@ class HistoryTabPage extends StatelessWidget {
     return MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primarySwatch: Colors.blueGrey,
         ),
         home: GFG());
   }
@@ -29,6 +29,7 @@ class _GFGState extends State<GFG> {
         title: const Text(
           "Search History",
         ),
+        backgroundColor: Colors.transparent,
         actions: [
           IconButton(
             onPressed: () {
