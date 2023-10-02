@@ -37,6 +37,16 @@ class _ProfileTabPageState extends State<ProfileTabPage> {
     }
   }
 
+  Widget buildBackgroundImage() {
+  return Container(
+    width: 800,
+    child: Image.asset(
+      'assets/background-wallpaper.jpg', // Replace with your image asset path
+      fit: BoxFit.cover, // Adjust the BoxFit property to control how the image is scaled
+    ),
+  );
+}
+
   @override
   Widget build(BuildContext context) {
     final User? user = FirebaseAuth.instance.currentUser;
@@ -54,85 +64,92 @@ class _ProfileTabPageState extends State<ProfileTabPage> {
     final profilePictureKey = GlobalKey();
 
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            children: [
-              //Profile Pic
-              // Stack(
-              //   children: [
-              //     SizedBox(
-              //       width: 120,
-              //       height: 120,
-              //       child: ClipRRect(
-              //           borderRadius: BorderRadius.circular(100),
-              //           child: CachedNetworkImage(
-              //               imageUrl: user?.photoURL ?? 'assets/default_user.png', // Use the default image if user?.photoURL is null
-              //               fit: BoxFit.cover,
-              //               key: ValueKey<String>(_userPhotoURL),
-              //             )
-              //         ),
-              //     ),
-              //   ],
-              // ),
+      backgroundColor: Color.fromARGB(255, 222, 212, 185),
+      body: Stack(
+        children: <Widget>[
+          buildBackgroundImage(),
 
-              //button
-              SizedBox(
-                width: 400,
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const ProfileDetailPage()));
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.yellow[200],
-                    side: BorderSide.none,
-                    shape: const StadiumBorder(),
-                  ),
-                  child: const Text(
-                    'View Profile Details',
-                    style: TextStyle(color: Colors.black),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 30),
-              const Divider(),
-              const SizedBox(height: 10),
+          SingleChildScrollView(
+            child: Container(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                children: [
+                  //Profile Pic
+                  // Stack(
+                  //   children: [
+                  //     SizedBox(
+                  //       width: 120,
+                  //       height: 120,
+                  //       child: ClipRRect(
+                  //           borderRadius: BorderRadius.circular(100),
+                  //           child: CachedNetworkImage(
+                  //               imageUrl: user?.photoURL ?? 'assets/default_user.png', // Use the default image if user?.photoURL is null
+                  //               fit: BoxFit.cover,
+                  //               key: ValueKey<String>(_userPhotoURL),
+                  //             )
+                  //         ),
+                  //     ),
+                  //   ],
+                  // ),
 
-              //Menu
-              //ProfileMenuWidget(title: 'Edit Profile',icon: Icons.edit,onPress: () {}),
-              ProfileMenuWidget(
-                  title: 'About Us',
-                  icon: Icons.info,
-                  onPress: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const AboutUsPage()));
-                  }),
-              ProfileMenuWidget(
-                title: 'Contact Us',
-                icon: Icons.phone,
-                onPress: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const ContactUsPage()));
-                },
-              ),
-              ProfileMenuWidget(
-                  title: 'Log out',
-                  icon: Icons.exit_to_app,
-                  onPress: () async {
-                    final shouldLogout = await showLogOutDialog(context);
-                    if (shouldLogout) {
-                      await FirebaseAuth.instance.signOut();
-                      // ignore: use_build_context_synchronously
+                  //button
+                  SizedBox(
+                    width: 400,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const ProfileDetailPage()));
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.yellow[200],
+                        side: BorderSide.none,
+                        shape: const StadiumBorder(),
+                      ),
+                      child: const Text(
+                        'View Profile Details',
+                        style: TextStyle(color: Colors.black,fontSize: 15),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 30),
+                  const Divider(),
+                  const SizedBox(height: 10),
+
+                  //Menu
+                  //ProfileMenuWidget(title: 'Edit Profile',icon: Icons.edit,onPress: () {}),
+                  ProfileMenuWidget(
+                      title: 'About Us',
+                      icon: Icons.info,
+                      onPress: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const AboutUsPage()));
+                      }),
+                  ProfileMenuWidget(
+                    title: 'Contact Us',
+                    icon: Icons.phone,
+                    onPress: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const LoginView()));
-                    }
-                  }),
-            ],
+                          builder: (context) => const ContactUsPage()));
+                    },
+                  ),
+                  ProfileMenuWidget(
+                      title: 'Log out',
+                      icon: Icons.exit_to_app,
+                      onPress: () async {
+                        final shouldLogout = await showLogOutDialog(context);
+                        if (shouldLogout) {
+                          await FirebaseAuth.instance.signOut();
+                          // ignore: use_build_context_synchronously
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const LoginView()));
+                        }
+                      }),
+                ],
+              ),
+            ),
           ),
-        ),
-      ),
+        ],
+      )
     );
   }
 }
@@ -155,26 +172,29 @@ class ProfileMenuWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      onTap: onPress,
-      leading: Container(
-        width: 40,
-        height: 40,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(100),
-          color: Colors.amberAccent.withOpacity(0.1),
+    return Container(
+      color: Colors.transparent,
+      child: ListTile(
+        onTap: onPress,
+        leading: Container(
+          width: 40,
+          height: 40,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(100),
+            color: Colors.amberAccent.withOpacity(0.1),
+          ),
+          child: Icon(icon, color: Colors.grey),
         ),
-        child: Icon(icon, color: Colors.blueAccent),
-      ),
-      title: Text(title),
-      trailing: Container(
-        width: 40,
-        height: 40,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(100),
-          color: Colors.grey.withOpacity(0.1),
+        title: Text(title),
+        trailing: Container(
+          width: 40,
+          height: 40,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(100),
+            color: Colors.grey.withOpacity(0.1),
+          ),
+          child: const Icon(Icons.arrow_forward_ios, color: Colors.grey),
         ),
-        child: const Icon(Icons.arrow_forward_ios, color: Colors.grey),
       ),
     );
   }

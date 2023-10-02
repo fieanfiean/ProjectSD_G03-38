@@ -8,10 +8,12 @@ import 'package:airasia_online_check_in_system/views/forgot_password_view.dart';
 import 'package:airasia_online_check_in_system/views/login_view.dart';
 import 'package:airasia_online_check_in_system/views/main_page_view.dart';
 import 'package:airasia_online_check_in_system/views/register_view.dart';
+import 'package:airasia_online_check_in_system/views/splash_screen.dart';
 import 'package:airasia_online_check_in_system/views/verify_email_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'dart:async';
 import 'dart:developer' as devtools show log;
 
 void main() async{
@@ -53,13 +55,16 @@ class HomePage extends StatelessWidget {
       future: Firebase.initializeApp(
         options: DefaultFirebaseOptions.currentPlatform,
       ),
+      
       builder: (context, snapshot) {
         switch (snapshot.connectionState){
+          case ConnectionState.waiting:
+            return SplashScreenView();
           case ConnectionState.done:
             final user = FirebaseAuth.instance.currentUser;
             print(user);
             if(user == null){
-              return const LoginView();
+              return SplashScreenView();
 
             } else {
               if (user.emailVerified){

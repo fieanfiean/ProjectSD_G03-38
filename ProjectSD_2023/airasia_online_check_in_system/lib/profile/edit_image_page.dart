@@ -66,12 +66,25 @@ class _EditImagePageState extends State<EditImagePage> {
   }
 
 
+  Widget buildBackgroundImage() {
+  return Container(
+    width: 800,
+    child: Image.asset(
+      'assets/background-wallpaper.jpg', // Replace with your image asset path
+      fit: BoxFit.cover, // Adjust the BoxFit property to control how the image is scaled
+    ),
+  );
+}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Edit Profile Picture'),),
+      appBar: AppBar(title: const Text('Edit Profile Picture'),backgroundColor: Colors.red),
       body: SingleChildScrollView(
-        child: Column(
+        child: Stack(
+          children: [
+            buildBackgroundImage(),
+            Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
@@ -125,14 +138,21 @@ class _EditImagePageState extends State<EditImagePage> {
                         ? CircularProgressIndicator()
                         : const Text(
                             'Update',
-                            style: TextStyle(fontSize: 15),
+                            style: TextStyle(fontSize: 15,color: Colors.black),
                           ),
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.yellow[200],
+                              side: BorderSide.none,
+                              shape: const StadiumBorder(),
+                            ),
                   ),
                 ),
               ),
             ),
           ],
         ),
+          ],
+        )
       ),
     );
   }

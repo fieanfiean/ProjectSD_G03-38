@@ -50,8 +50,8 @@
 
               <div class="d-flex justify-content-center py-4">
                 <a href="index.html" class="logo d-flex align-items-center w-auto">
-                  <img src="assets/img/logo.png" alt="">
-                  <span class="d-none d-lg-block">NiceAdmin</span>
+                  <img src="assets/img/airasia-logo.png" alt="">
+                  <span class="d-none d-lg-block">AirAsia</span>
                 </a>
               </div><!-- End Logo -->
 
@@ -60,19 +60,19 @@
                 <div class="card-body">
 
                   <div class="pt-4 pb-2">
-                    <h5 class="card-title text-center pb-0 fs-4">Create an Account</h5>
-                    <p class="text-center small">Enter your personal details to create account</p>
+                    <h5 class="card-title text-center pb-0 fs-4">Create Staff Account</h5>
+                    <p class="text-center small">Add Staff</p>
                   </div>
 
                   <form class="row g-3 needs-validation" novalidate>
-                    <div class="col-12">
+                    <!-- <div class="col-12">
                       <label for="yourName" class="form-label">User Type</label>
                       <input type="text" name="name" class="form-control" id="userType" required>
                       <div class="invalid-feedback">Please, enter The user type!</div>
-                    </div>
+                    </div> -->
 
                     <div class="col-12">
-                      <label for="yourEmail" class="form-label">Your Email</label>
+                      <label for="yourEmail" class="form-label">Email</label>
                       <input type="email" name="email" class="form-control" id="yourEmail" required>
                       <div class="invalid-feedback">Please enter a valid Email adddress!</div>
                     </div>
@@ -92,31 +92,30 @@
                       <div class="invalid-feedback">Please enter your password!</div>
                     </div>
 
-                    <div class="col-12">
+                    <!-- <div class="col-12">
                       <div class="form-check">
                         <input class="form-check-input" name="terms" type="checkbox" value="" id="acceptTerms" required>
                         <label class="form-check-label" for="acceptTerms">I agree and accept the <a href="#">terms and conditions</a></label>
                         <div class="invalid-feedback">You must agree before submitting.</div>
                       </div>
-                    </div>
+                    </div> -->
                     <div class="col-12">
                       <button class="btn btn-primary w-100" type="submit" id="submit">Create Account</button>
                     </div>
-                    <div class="col-12">
-                      <p class="small mb-0">Already have an account? <a href="pages-login.html">Log in</a></p>
-                    </div>
                   </form>
-
+                  <div class="col-12">
+                    <button class="btn btn-primary w-100" id="back" style="margin-top: 10px;">return</button>
+                  </div>
                 </div>
               </div>
 
-              <div class="credits">
+              <!-- <div class="credits"> -->
                 <!-- All the links in the footer should remain intact. -->
                 <!-- You can delete the links only if you purchased the pro version. -->
                 <!-- Licensing information: https://bootstrapmade.com/license/ -->
                 <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-              </div>
+                <!-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+              </div> -->
 
             </div>
           </div>
@@ -144,7 +143,7 @@
       // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
   import { getDatabase,ref,set,get,child } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
-  import { getAuth, createUserWithEmailAndPassword , onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js"
+  import { getAuth, createUserWithEmailAndPassword , onAuthStateChanged, signInWithEmailAndPassword} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js"
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -165,60 +164,70 @@
   const auth = getAuth();
   const user = auth.currentUser;
 
+  back.addEventListener('click',function(event){
+    window.location.href = 'assign-staff.html';
+  })
 
 
   document.getElementById("submit").addEventListener('click',function (e){
     var username = document.getElementById('yourUsername').value;
     var email = document.getElementById('yourEmail').value;
-    var userType = document.getElementById('userType').value;
     var password = document.getElementById('yourPassword').value;
 
     e.preventDefault();
 
-    createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            // Signed in 
-            //const user = userCredential.user;
-            // user.displayName = username;
+    onAuthStateChanged(auth, (user) => {
+      const adminEmail = user.email;
+      const adminPassword = user.password;
 
-            alert("Regsitered!!");
-            // ...
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            alert(errorMessage);
-            // ..
-        });
+    if (user) {
+      createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                // User account created successfully
+                alert("Registered!!");
 
-        onAuthStateChanged(auth, (user) => {
-        if (user) {
-            // User is signed in, see docs for a list of available properties
-            // https://firebase.google.com/docs/reference/js/auth.user
-            const uid = user.uid;
-            console.log(uid);            
-            // ...
-            set(ref(db, 'user/' + uid),
-            {
-                type: document.getElementById('userType').value,
-                email: document.getElementById('yourEmail').value,
-                username: document.getElementById('yourUsername').value,
-                // password: document.getElementById('yourPassword').value,
-                photoUrl : null,
-                uid: uid,
+                const uid = userCredential.user.uid;
+
+                // Add staff user to the database
+                set(ref(db, 'user/' + uid), {
+                    type: 'staff',
+                    email: email,
+                    username: username,
+                    photoUrl: null,
+                    uid: uid,
+                })
+                .then(() => {
+                    // Data added to the database
+                    console.log("Staff user added to the database");
+                })
+                .catch((error) => {
+                    console.error("Error adding staff user to the database:", error);
+                });
             })
-        } else {
-            // User is signed out
-            // ...
-            console.log("sign out");
-        }
-        });
+            
+        // signInWithEmailAndPassword(auth, adminEmail, adminPassword);
+
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/auth.user
+        
+    } else {
+        // User is signed out
+        // ...
+        console.log("sign out");
+    }
+            
+  });
+
+    
+        
 
     
         // alert("Registered!!!");
    
 
   })
+
+ 
 
   </script>
   <script src="assets/js/main.js"></script>

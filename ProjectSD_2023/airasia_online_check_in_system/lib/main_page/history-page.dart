@@ -22,6 +22,17 @@ class GFG extends StatefulWidget {
 }
 
 class _GFGState extends State<GFG> {
+
+  Widget buildBackgroundImage() {
+  return Container(
+    width: 800,
+    child: Image.asset(
+      'assets/background-wallpaper.jpg', // Replace with your image asset path
+      fit: BoxFit.cover, // Adjust the BoxFit property to control how the image is scaled
+    ),
+  );
+}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,6 +52,11 @@ class _GFGState extends State<GFG> {
             },
             icon: const Icon(Icons.search),
           )
+        ],
+      ),
+      body: Stack(
+        children: <Widget>[
+          buildBackgroundImage()
         ],
       ),
     );

@@ -1,8 +1,10 @@
 import 'package:airasia_online_check_in_system/views/login_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:get/get.dart';
 
 
 class EditEmailPage extends StatefulWidget {
@@ -32,6 +34,7 @@ void updateUserValue(String email) async{
           // Email is not in use, allow the update
           // Update the email using auth.currentUser.updateEmail(newEmail);
           await user!.updateEmail(email);
+          // ignore: use_build_context_synchronously
           showDialog(
             context: context,
             builder: (BuildContext context) {
@@ -49,6 +52,10 @@ void updateUserValue(String email) async{
               );
             },
           );
+          final database = FirebaseDatabase.instance.ref();
+          final userData = database.child('user/' + user!.uid);
+          userData
+          .update({'email': email,'type': 'passenger', 'uid':user!.uid, 'username': user!.displayName});
           Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => const LoginView())
@@ -56,6 +63,7 @@ void updateUserValue(String email) async{
         } else {
           // Email is already in use
           // Handle this case, e.g., show an error message to the user
+          // ignore: use_build_context_synchronously
           showDialog(
             context: context,
             builder: (BuildContext context) {
@@ -135,13 +143,26 @@ void updateUserValue(String email) async{
   ).then((value) => value ?? false);
 }
 
+  Widget buildBackgroundImage() {
+  return Container(
+    width: 800,
+    child: Image.asset(
+      'assets/background-wallpaper.jpg', // Replace with your image asset path
+      fit: BoxFit.cover, // Adjust the BoxFit property to control how the image is scaled
+    ),
+  );
+}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Edit Email')),
+      appBar: AppBar(title: const Text('Edit Email'),backgroundColor: Colors.red,),
       body: Form(
           key: _formKey,
-          child: Column(
+          child: Stack(
+            children: [
+              buildBackgroundImage(),
+              Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
@@ -218,11 +239,18 @@ void updateUserValue(String email) async{
                             },
                             child: const Text(
                               'Update',
-                              style: TextStyle(fontSize: 15),
+                              style: TextStyle(fontSize: 15,color:Colors.black),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.yellow[200],
+                              side: BorderSide.none,
+                              shape: const StadiumBorder(),
                             ),
                           ),
                         )))
               ]),
+            ],
+          )
         )
     );
   }

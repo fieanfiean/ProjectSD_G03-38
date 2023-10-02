@@ -1,3 +1,4 @@
+import 'package:airasia_online_check_in_system/views/verify_email_view.dart';
 import 'package:flutter/material.dart';
 
 class SearchTicketTabPage extends StatefulWidget {
@@ -28,41 +29,56 @@ class _MySearchTicketTabPageState extends State<SearchTicketTabPage> {
     });
   }
 
+  Widget buildBackgroundImage() {
+  return Container(
+    width: 800,
+    child: Image.asset(
+      'assets/background-wallpaper.jpg', // Replace with your image asset path
+      fit: BoxFit.cover, // Adjust the BoxFit property to control how the image is scaled
+    ),
+  );
+}
+
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      body: Container(
-        child: Column(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextField(
-                onChanged: (value) {
-                  filterSearchResults(value);
-                },
-                controller: editingController,
-                decoration: InputDecoration(
-                    labelText: "Search",
-                    hintText: "Search",
-                    prefixIcon: Icon(Icons.search),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(25.0)))),
-              ),
+    return Scaffold(
+      body: Stack(
+        children: <Widget>[
+          buildBackgroundImage(),
+          Container(
+            child: Column(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextField(
+                    onChanged: (value) {
+                      filterSearchResults(value);
+                    },
+                    controller: editingController,
+                    decoration: const InputDecoration(
+                        labelText: "Search",
+                        hintText: "Search",
+                        prefixIcon: Icon(Icons.search),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(25.0)))),
+                  ),
+                ),
+                Expanded(
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: items.length,
+                    itemBuilder: (context, index) {
+                      return ListTile(
+                        title: Text('${items[index]}'),
+                      );
+                    },
+                  ),
+                ),
+              ],
             ),
-            Expanded(
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: items.length,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    title: Text('${items[index]}'),
-                  );
-                },
-              ),
-            ),
-          ],
-        ),
-      ),
+          ),
+        ],
+      )
     );
   }
 }

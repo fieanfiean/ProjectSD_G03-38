@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
 class EditNamePage extends StatefulWidget {
@@ -56,13 +57,26 @@ class _EditNamePageState extends State<EditNamePage> {
   //     } 
   // }
 
+  Widget buildBackgroundImage() {
+  return Container(
+    width: 800,
+    child: Image.asset(
+      'assets/background-wallpaper.jpg', // Replace with your image asset path
+      fit: BoxFit.cover, // Adjust the BoxFit property to control how the image is scaled
+    ),
+  );
+}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Edit Name')),
+      appBar: AppBar(title: const Text('Edit Name'),backgroundColor: Colors.red,),
       body: Form(
           key: _formKey,
-          child: Column(
+          child: Stack(
+            children: [
+              buildBackgroundImage(),
+              Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
@@ -139,10 +153,17 @@ class _EditNamePageState extends State<EditNamePage> {
                           },
                           child: const Text(
                             'Update',
-                            style: TextStyle(fontSize: 15),
+                            style: TextStyle(fontSize: 15,color: Colors.black),
                           ),
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.yellow[200],
+                              side: BorderSide.none,
+                              shape: const StadiumBorder(),
+                            ),
                         ),
                       )))
+            ],
+          )
             ],
           ),
         )
@@ -154,6 +175,10 @@ class _EditNamePageState extends State<EditNamePage> {
     User? currentUser = user.currentUser;
 
     currentUser?.updateDisplayName(displayName);
+    final database = FirebaseDatabase.instance.ref();
+    final userData = database.child('user/' + user.currentUser!.uid);
+    userData
+    .update({'email': user.currentUser!.email,'type': 'passenger', 'uid':user.currentUser!.uid, 'username': displayName});
     await currentUser?.reload();
     Navigator.pop(context,displayName);
 

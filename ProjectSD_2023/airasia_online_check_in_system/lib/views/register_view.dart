@@ -35,6 +35,17 @@ class _RegisterViewState extends State<RegisterView> {
     super.dispose();
   }
 
+  Widget buildBackgroundImage() {
+    return Container(
+      width: 800,
+      height: 800,
+      child: Image.asset(
+        'assets/background-wallpaper-2.jpg', // Replace with your image asset path
+        fit: BoxFit.cover, // Adjust the BoxFit property to control how the image is scaled
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,7 +53,11 @@ class _RegisterViewState extends State<RegisterView> {
         title: const Text('Register'),
         backgroundColor: Colors.red,
         ),
-      body: Column(
+      body: Stack(
+        children: [
+          buildBackgroundImage(),
+
+          Column(
         children: [
           // TextField(
           //   controller: _email,
@@ -111,6 +126,7 @@ class _RegisterViewState extends State<RegisterView> {
                       email: email, 
                       password: password
                     ); 
+                    // ignore: use_build_context_synchronously
                     showDialog(
                       context: context,
                       builder: (BuildContext context) {
@@ -134,7 +150,8 @@ class _RegisterViewState extends State<RegisterView> {
                     final database = FirebaseDatabase.instance.ref();
                     final userData = database.child('user/' + user!);
                     userData
-                    .set({'email': email,'type': 'passenger', 'uid':user});
+                    .set({'email': email,'type': 'passenger', 'uid':user, 'username':""});
+                    // ignore: use_build_context_synchronously
                     Navigator.of(context).push(MaterialPageRoute(builder: (context)=> const HomePage()));
 
 
@@ -143,7 +160,7 @@ class _RegisterViewState extends State<RegisterView> {
                       if(e.code == 'weak-password'){
                         print('Weak password');
                         setState(() {
-                          errorMessage = 'Weak Password';
+                          errorMessage = 'Password should be at least 6 character.';
                         });                 
                       } else if(e.code == 'email-already-in-use'){
                         print('Email is already in use');
@@ -161,8 +178,13 @@ class _RegisterViewState extends State<RegisterView> {
                   child: 
                         const Text(
                           'Register',
-                          style: TextStyle(fontSize: 15),
+                          style: TextStyle(fontSize: 15,color: Colors.black),
                         ),
+                        style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.yellow[200],
+                              side: BorderSide.none,
+                              shape: const StadiumBorder(),
+                            ),
                 ),
               ),
             ),
@@ -171,9 +193,11 @@ class _RegisterViewState extends State<RegisterView> {
           TextButton(onPressed: (){
             Navigator.of(context).push(MaterialPageRoute(builder: (context)=> const LoginView()));
           }, 
-          child: const Text('Already registered? Login here!'))
+          child: const Text('Already registered? Login here!',style: TextStyle(color: Colors.black),))
         ],
       ),
+        ],
+      )
     );
   }
 

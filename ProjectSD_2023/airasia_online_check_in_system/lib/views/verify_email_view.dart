@@ -9,6 +9,17 @@ class VerifyEmailView extends StatefulWidget {
   State<VerifyEmailView> createState() => _VerifyEmailViewState();
 }
 
+Widget buildBackgroundImage() {
+    return Container(
+      width: 800,
+      height: 800,
+      child: Image.asset(
+        'assets/background-wallpaper-2.jpg', // Replace with your image asset path
+        fit: BoxFit.cover, // Adjust the BoxFit property to control how the image is scaled
+      ),
+    );
+  }
+
 class _VerifyEmailViewState extends State<VerifyEmailView> {
   @override
   Widget build(BuildContext context) {
@@ -17,22 +28,41 @@ class _VerifyEmailViewState extends State<VerifyEmailView> {
         title: const Text('Verify email'),
         backgroundColor: Colors.red,
         ),
-      body: Column(
+      body: Stack(
         children: [
-        const Text('Please verify your email address:'),
-        TextButton(
-          onPressed: () async {
-            final user = FirebaseAuth.instance.currentUser;
-            await user?.sendEmailVerification();
-            verifyEmail();
-            Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => const LoginView())
-                );
-          }, 
-          child: const Text('Send email verification'))
+          buildBackgroundImage(),
+
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 16.0),
+              child: Column(
+                children: [
+                const Text('Please verify your email address:'),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ElevatedButton(
+                    onPressed: () async {
+                      final user = FirebaseAuth.instance.currentUser;
+                      await user?.sendEmailVerification();
+                      verifyEmail();
+                  Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const LoginView())
+                      );
+                              }, 
+                              child: const Text('Send email verification',style: TextStyle(color: Colors.black),),
+                              style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.yellow[200],
+                                    side: BorderSide.none,
+                                    shape: const StadiumBorder(),
+                                  ),),
+                )
+                    ],
+                  ),
+            ),
+          ),
         ],
-      ),
+      )
     );
   }
 

@@ -8,6 +8,7 @@ import 'package:airasia_online_check_in_system/profile/edit_name_page.dart';
 import 'package:airasia_online_check_in_system/profile/edit_phone_number_page.dart';
 import 'package:airasia_online_check_in_system/profile/change_password_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 
@@ -20,23 +21,46 @@ class ProfileDetailPage extends StatefulWidget {
 
 class _ProfileDetailPageState extends State<ProfileDetailPage> {
   User? user = FirebaseAuth.instance.currentUser;
+  final dbRef = FirebaseDatabase.instance.ref();
+
+                
 
   Future<void> refreshPage() async{
     await user?.reload();
+    
   }
 
   final profilePictureKey = GlobalKey();
     String _userPhotoURL = FirebaseAuth.instance.currentUser?.photoURL ?? '';
-    String _userName = FirebaseAuth.instance.currentUser?.displayName ?? '';
+    // String _userName = FirebaseAuth.instance.currentUser?.displayName ?? '';
+    String _userName = '';
     String _email = FirebaseAuth.instance.currentUser?.email ?? '';
+    
+  void fetchUsername() {
+  final user = FirebaseAuth.instance.currentUser;
+  if (user != null) {
+    final uid = user.uid;
+    print("uid is" +uid);
+    final databaseReference = FirebaseDatabase.instance.ref();
 
-
+    databaseReference.child('user').child(uid).child('username').onValue.listen(
+      (event) {
+        if (event.snapshot.value != null) {
+          setState(() {
+            _userName = event.snapshot.value.toString();
+          });
+        }
+      },
+    );
+  }
+}
   
   @override
   void initState() {
     super.initState();
     user = FirebaseAuth.instance.currentUser;
         print(user!.photoURL);
+      fetchUsername();
   }
 
   // void updatePhotoURL(String newURL) {
@@ -50,6 +74,9 @@ class _ProfileDetailPageState extends State<ProfileDetailPage> {
   // }
 
   void navigateEditPage(Widget editForm) async {
+    // final snapshot = await dbRef.child('user/' + FirebaseAuth.instance.currentUser!.uid).get();
+    // Object? _userName = snapshot.value;
+ 
     // Navigator.of(context).push(MaterialPageRoute(builder: (context) => editForm));
             final updatedURL = await Navigator.of(context).push<String>(MaterialPageRoute(builder: (context) => editForm));
 
@@ -80,10 +107,25 @@ class _ProfileDetailPageState extends State<ProfileDetailPage> {
   }
 
   
-
+  Widget buildBackgroundImage() {
+  return Container(
+    width: 800,
+    child: Image.asset(
+      'assets/background-wallpaper.jpg', // Replace with your image asset path
+      fit: BoxFit.cover, // Adjust the BoxFit property to control how the image is scaled
+    ),
+  );
+}
 
   @override
   Widget build(BuildContext context) {
+    Text(
+  'Username: $_userName',
+  style: const TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.bold,
+  ),
+);
     return Scaffold(
       appBar:AppBar(
               backgroundColor: Colors.red,
@@ -95,7 +137,10 @@ class _ProfileDetailPageState extends State<ProfileDetailPage> {
         RefreshIndicator(
           onRefresh: refreshPage,
           child: SingleChildScrollView(
-            child: Column(
+            child: Stack(
+              children: [
+                buildBackgroundImage(),
+                Column(
               children: [
                 InkWell(
                   onTap: () {
@@ -106,7 +151,8 @@ class _ProfileDetailPageState extends State<ProfileDetailPage> {
                       onPressed: () {},
                       )
                 ),
-                buildUserInfoDisplay(_userName, 'Name', const EditNamePage()),
+                
+                buildUserInfoDisplay('$_userName', 'Name', const EditNamePage()),
                 //buildUserInfoDisplay(user?.phoneNumber ?? '', 'Phone', const EditPhoneNumberPage()),
                 buildUserInfoDisplay(_email, 'Email', const EditEmailPage()),
         Padding(
@@ -122,10 +168,17 @@ class _ProfileDetailPageState extends State<ProfileDetailPage> {
                     },
                     child: const Text(
                       'Change Password',
-                      style: TextStyle(fontSize: 15),
+                      style: TextStyle(fontSize: 15,color: Colors.black),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.yellow[200],
+                      side: BorderSide.none,
+                      shape: const StadiumBorder(),
                     ),
                   ),
                 )))
+              ],
+            )
               ],
             )
           ),

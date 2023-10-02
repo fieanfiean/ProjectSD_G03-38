@@ -25,6 +25,18 @@ class _ForgotPassowrdViewState extends State<ForgotPassowrdView> {
     super.dispose();
   }
 
+
+  Widget buildBackgroundImage() {
+    return Container(
+      width: 800,
+      height: 800,
+      child: Image.asset(
+        'assets/background-wallpaper-2.jpg', // Replace with your image asset path
+        fit: BoxFit.cover, // Adjust the BoxFit property to control how the image is scaled
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +53,10 @@ class _ForgotPassowrdViewState extends State<ForgotPassowrdView> {
           },
         )
       ),
-      body: Column(
+      body: Stack(
+        children: [
+          buildBackgroundImage(),
+          Column(
         children: [
           // TextField(
           //   controller: _email,
@@ -67,16 +82,42 @@ class _ForgotPassowrdViewState extends State<ForgotPassowrdView> {
                   controller: _email,
                 ))),
 
-          ElevatedButton.icon(
-            onPressed: resetPassword, 
-            style: ElevatedButton.styleFrom(
-              minimumSize: Size.fromHeight(50),
+          Padding(
+              padding: EdgeInsets.only(top: 40),
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: SizedBox(
+                  width: 330,
+                  height: 50,
+                  child: ElevatedButton(
+                    onPressed: resetPassword,
+                    child: 
+                          const Text(
+                            'Reset password',
+                            style: TextStyle(fontSize: 15,color: Colors.black),
+                          ),
+                    style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.yellow[200],
+                              side: BorderSide.none,
+                              shape: const StadiumBorder(),
+                            ),
+                  ),
+                ),
+              ),
             ),
-            icon: Icon(Icons.email_outlined),
-            label: const Text('Reset password'),
-          ),
+
+          // ElevatedButton.icon(
+          //   onPressed: resetPassword, 
+          //   style: ElevatedButton.styleFrom(
+          //     minimumSize: Size.fromHeight(50),
+          //   ),
+          //   icon: Icon(Icons.email_outlined),
+          //   label: const Text('Reset password'),
+          // ),
         ]
       ),
+        ],
+      )
     );
   }
 
