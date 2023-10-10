@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Assign Staff </title>
+  <title>Enquiry</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -462,7 +462,7 @@
       </li><!-- End Profile Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="enquiry.html">
+        <a class="nav-link " href="enquiry.html">
           <i class="bi bi-question-circle"></i>
           <span>Enquiry</span>
         </a>
@@ -483,11 +483,12 @@
       </li><!-- End Contact Page Nav -->
 
       <li class="nav-item" id="staffMenu">
-        <a class="nav-link " href="assign-staff.html">
+        <a class="nav-link collapsed" href="assign-staff.html">
           <i class="bi bi-card-list"></i>
           <span>Staff</span>
         </a>
       </li>
+      
       <li class="nav-item">
         <a class="nav-link collapsed" href="assign-passenger.html">
           <i class="bi bi-card-list"></i>
@@ -537,23 +538,41 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Assign Staff</h1>
+      <h1>Enquiry</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="dashboard.html">Home</a></li>
-          <li class="breadcrumb-item active">Assign Staff</li>
+          <li class="breadcrumb-item active">Enquiry</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
 
-    <section class="section dashboard">
-        <div id="container">
-            <h1 style="margin-top: 0;">Staff Table</h1>
-            <div id="input-container">
-                <input type="text" id="name-input" placeholder="Enter name">
-                <input type="email" id="email-input" placeholder="Enter email">
-                <button id="add-btn">Add</button>
+    <section class="section contact">
+        <!-- <div class="row gy-4">
+            <div class="col-xl-6">
+                
+                <div class="row">
+                    <div class="col-lg-6">
+                    <div class="info-box card">
+                        <i class="bi bi-geo-alt"></i>
+                        <h3>Address</h3>
+                        <p id="contact-address"></p>
+                        <button class="btn btn-primary" id="editAddressButton">Edit</button>
+                    </div>
+                </div>
+            
             </div>
+        </div> -->
+        <div class="row gy-4" id="cardContainer">
+            <!-- Cards will be dynamically added here -->
+        </div>
+        <!-- <div id="container">
+            <h1 style="margin-top: 0;">Passenger Table</h1>
+            <div id="input-container"> -->
+                <!-- <input type="text" id="name-input" placeholder="Enter name">
+                <input type="email" id="email-input" placeholder="Enter email"> -->
+                <!-- <button id="add-btn">Add</button> -->
+            <!-- </div>
             <table>
                 <thead>
                     <tr>
@@ -571,20 +590,20 @@
                 <button id="update-btn">Update</button>
                 <button id="cancel-btn">Cancel</button>
             </div>
-        </div>
+        </div> -->
 
         <!-- The Modal -->
-        <div id="editModal" class="modal-staff">
+        <!-- <div id="editModal" class="modal-staff"> -->
           <!-- Modal content -->
-          <div class="modal-data">
+          <!-- <div class="modal-data">
             <span class="close" id="closeModal">&times;</span>
-            <h2>Edit Staff</h2>
+            <h2>Edit Passenger</h2> -->
             <!-- Add form fields for editing staff details here -->
-            <input type="text" id="editedName" placeholder="Name">
+            <!-- <input type="text" id="editedName" placeholder="Name"> -->
             <!-- <input type="text" id="editedJob" placeholder="Job"> -->
-            <button id="saveChanges">Save Changes</button>
-          </div>
-        </div>
+            <!-- <button id="saveChanges">Save Changes</button> -->
+          <!-- </div> -->
+        <!-- </div> -->
 
 
 
@@ -1256,14 +1275,15 @@
     
   </script>
 
-  <script type="module">
+<script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
-    import { getDatabase,ref,set,get,child, onValue, orderByChild, query, remove, update } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
-    import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, deleteUser } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js"
+    import { getDatabase,ref,set,get,child, onValue} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js"
     // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
     
     // Your web app's Firebase configuration
+    document.addEventListener("DOMContentLoaded", function () {
       // Your Firebase configuration
       const firebaseConfig = {
         // ... (your Firebase config here)
@@ -1275,22 +1295,15 @@
         messagingSenderId: "975021124988",
         appId: "1:975021124988:web:de2f86dd530fe8012488f9"
       };
+    //   firebase.initializeApp(firebaseConfig);
 
       // Initialize Firebase
       const app = initializeApp(firebaseConfig);
       const db = getDatabase(app);
       const auth = getAuth();
       const user = auth.currentUser;
-      document.addEventListener("DOMContentLoaded", function () {
+    //   const database = firebase.database();
 
-      const addBtn = document.getElementById("add-btn");
-      const tableBody = document.getElementById("table-body");
-      const updateNameInput = document.getElementById("update-name-input");
-      const updatEmailInput = document.getElementById("update-email-input");
-      const updateBtn = document.getElementById("update-btn");
-      const cancelBtn = document.getElementById("cancel-btn");
-
-      
 
     //   if (user) {
   
@@ -1306,9 +1319,10 @@
         const userNameSpan = document.getElementById('userNameSpan');
         const userNameH6 = document.getElementById('userNameH6');
         const userType = document.getElementById('usertype');
-        const tableBody = document.getElementById('table-body');
 
         if (user) {
+          console.log(user);
+
             // User is signed in, see docs for a list of available properties
             // https://firebase.google.com/docs/reference/js/auth.user
             const uid = user.uid;
@@ -1320,115 +1334,15 @@
                 userNameSpan.innerHTML = data.username;
                 userNameH6.innerHTML = data.username;
                 userType.innerHTML = data.type;
-                // if(data.type == 'admin'){
-                //   const staffMenuItem = document.getElementById('staffItem');
-                //   staffMenuItem.style.display = 'block';
-                // }else{
-                //   const staffMenuItem = document.getElementById('staffItem');
-                //   staffMenuItem.style.display = 'none';
-                // }
+                if(data.type == 'admin'){
+                  const staffMenuItem = document.getElementById('staffMenu');
+                  staffMenuItem.style.display = 'block';
+                }else{
+                  const staffMenuItem = document.getElementById('staffMenu');
+                  staffMenuItem.style.display = 'none';
+                }
+
             });
-            
-            const getStaff = query(ref(db, 'user'), orderByChild('type'));
-
-              // Use the query to retrieve the data
-            get(getStaff).then((snapshot) => {
-                // Clear the table body
-                tableBody.innerHTML = "";
-
-                // Loop through the staff users and add them to the table
-                snapshot.forEach((childSnapshot) => {
-                    const userData = childSnapshot.val();
-                    const userId = childSnapshot.key;
-                    const isStaff = userData.type;
-                    // Create a table row for each staff user
-                    if(isStaff == 'staff'){
-                      const row = document.createElement('tr');
-                      row.innerHTML = `
-                          <td>${userId}</td>
-                          <td>${userData.username}</td>
-                          <td>${userData.email}</td>
-                          <td>
-                              <button class="edit-btn" data-id="${userId}">Edit</button>
-                              <button class="delete-btn" data-id="${userId}">Delete</button>
-                          </td>
-                      `;
-
-                      // Append the row to the table body
-                      tableBody.appendChild(row);
-
-                      const editButton = row.querySelector('.edit-btn');
-                      editButton.addEventListener('click', () => {
-                        const editModal = document.getElementById('editModal');
-                        editModal.style.display = 'block';
-
-                        // You can pre-fill the modal fields with the existing data for editing
-                        const editedNameInput = document.getElementById('editedName');
-                        const editedJobInput = document.getElementById('editedJob');
-
-                        editedNameInput.value = userData.username;
-                        // editedJobInput.value = userData.type;
-
-                        const closeModalButton = document.getElementById('closeModal');
-                        // const editModal = document.getElementById('editModal');
-
-                        closeModalButton.addEventListener('click', () => {
-                          // Close the modal when the close button is clicked
-                          editModal.style.display = 'none';
-                        });
-
-                        // Close the modal when the overlay is clicked
-                        window.addEventListener('click', (event) => {
-                          if (event.target === editModal) {
-                            editModal.style.display = 'none';
-                          }
-                        });
-
-                        const saveChangesButton = document.getElementById('saveChanges');
-
-                        saveChangesButton.addEventListener('click', () => {
-                          // Retrieve the edited data from the modal fields
-                          const editedName = document.getElementById('editedName').value;
-                          // const editedJob = document.getElementById('editedJob').value;
-
-                          // Update the user's data in the database (you'll need to implement this)
-                          // For example, you can use Firebase's set() method to update the data
-                          const userRef = ref(db, 'user/' + userData.uid);
-                          // alert(userRef);
-                          update(userRef, {
-                            username: editedName,
-                            // type: editedJob,
-                          }).then(() => {
-                            // Data updated successfully
-                            // Close the modal
-                            editModal.style.display = 'none';
-                          }).catch((error) => {
-                            console.error('Error updating user data:', error);
-                          });
-                          window.location.href = 'assign-staff.html';
-
-                        });
-                      });
-
-                      
-
-
-                      const deleteButton = row.querySelector('.delete-btn');
-                      deleteButton.addEventListener('click', () => {
-                          // Get the user's UID from the data-id attribute                            
-                          // Show a confirmation dialog to confirm the deletion
-                          const confirmDeletion = confirm('Are you sure you want to delete this user account?');
-                          
-                          if (confirmDeletion) {
-                              // Delete the user in Firebase Authentication
-                              // Delete the user by their ID
-                              remove(ref(db, 'user/' + userData.uid));
-                              window.location.href = 'assign-staff.html';
-                          }
-                      });
-                    }
-                });
-              });
             
             // ...
         } else {
@@ -1436,49 +1350,46 @@
             // ...
             console.log("sign out");
         }
+
+
+// Reference to the data you want to fetch (e.g., 'contacts')
+const dataRef = ref(db,'enquiry'); // Replace with your path
+  onValue(dataRef, (snapshot) => {
+    // Handle the retrieved data here
+    const data = snapshot.val();
+    createCards(data); // Call a function to create cards
+  });
+
+// Function to create a card element
+function createCard(dataItem) {
+    const cardContainer = document.getElementById("cardContainer"); // Get the card container element
+    const card = document.createElement("div"); // Create a new card element
+    card.className = "col-lg-4"; // Set the card's class name or attributes
+
+    // Create the card's inner content
+    card.innerHTML = `
+      
+          <div class="info-box card">
+            <i class="bi bi-envelope"></i>
+            <h3>By:${dataItem.email}</h3>
+            <p id="content">${dataItem.content}</p> <!-- Replace with the relevant data field -->
+            <!--<button class="btn btn-primary" id="editAddressButton">Edit</button> -->
+          </div>
+        
+    `;
+
+    cardContainer.appendChild(card); // Append the card to the container
+  }
+
+  // Function to create cards for each data item
+  function createCards(data) {
+    Object.keys(data).forEach((key) => {
+      if (key !== "index") {
+        createCard(data[key]); // Create a card for each data item except for "index"
+      }
+    });
+  }
         });
-
-        addBtn.addEventListener('click',function(event){
-          event.preventDefault();
-          const nameInput = document.getElementById("name-input").value;
-          const emailInput = document.getElementById("email-input").value;
-          console.log(emailInput);
-          createUserWithEmailAndPassword(auth, emailInput, 123456)
-            .then((userCredential) => {
-                // User account created successfully
-                // alert("Registered!!");
-
-                const uid = userCredential.user.uid;
-
-                // Add staff user to the database
-                set(ref(db, 'user/' + uid), {
-                    type: 'staff',
-                    email: emailInput,
-                    username: nameInput,
-                    uid: uid,
-                })
-                .then(() => {
-                    // Data added to the database
-                    console.log("Staff user added to the database");
-                    const getAdmin = query(ref(db, 'user'), orderByChild('type'));
-                    get(getAdmin).then((snapshot) => {
-
-                    snapshot.forEach((childSnapshot) => {
-                      const userData = childSnapshot.val();
-                      const userId = childSnapshot.key;
-                      const isAdmin = userData.type;
-                      if(isAdmin == 'admin'){
-                        signInWithEmailAndPassword(auth,userData.email,userData.password);
-                      }
-                    });
-                  });
-                })
-                .catch((error) => {
-                    console.error("Error adding staff user to the database:", error);
-                });
-            })
-        });
-
 
         logOutItem.addEventListener('click', function (event) {
             event.preventDefault(); // Prevent the default link behavior
@@ -1511,7 +1422,3 @@
     });
 
   </script>
-
-</body>
-
-</html>

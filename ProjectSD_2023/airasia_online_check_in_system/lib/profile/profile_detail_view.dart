@@ -270,11 +270,11 @@ class DisplayImage extends StatelessWidget {
     return Center(
         child: Stack(children: [
       buildImage(color),
-      Positioned(
-        right: 4,
-        top: 10,
-        child: buildEditIcon(color),
-      )
+      // Positioned(
+      //   right: 4,
+      //   top: 10,
+      //   child: buildEditIcon(color),
+      // )
     ]));
   }
 
