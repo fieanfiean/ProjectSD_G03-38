@@ -464,7 +464,7 @@
       </li><!-- End Profile Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link " href="enquiry.html">
+        <a class="nav-link collapsed" href="enquiry.html">
           <i class="bi bi-question-circle"></i>
           <span>Enquiry</span>
         </a>
@@ -1430,7 +1430,7 @@ function createCard(dataItem) {
     card.innerHTML = `
       
           <div class="info-box card">
-            <i class="bi bi-airplane"></i>
+            <i class="bi bi-ticket"></i>
             <h3>${dataItem.bookingId}</h3>
             <!--<p id="content">${dataItem.departureTime}</p> Replace with the relevant data field -->
             <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#flightDetailsModal" onclick="showFlightDetails('${dataItem.flightId}', '${flightData.departureTime}', '${flightData.arrivalTime}', '${flightData.departureDate}', '${flightData.destination}', '${dataItem.bookingId}', '${dataItem.email}', '${dataItem.seat}')">View Details</button>
