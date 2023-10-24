@@ -160,7 +160,7 @@ class _MySearchTicketTabPageState extends State<SearchTicketTabPage> {
                                 //     RegExp(r'^[a-zA-Z]+$').hasMatch(firstNameController.text +
                                 //         secondNameController.text)) {
                                 //   updateUserValue(updatedUsername);
-                                //   // Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ProfileDetailPage()));
+                                  // Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ProfileDetailPage()));
                                 // }
                                 if (_formKey.currentState!.validate()) {
                                   // Form is valid, perform the search

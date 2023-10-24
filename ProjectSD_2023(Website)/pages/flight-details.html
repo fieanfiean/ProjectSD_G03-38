@@ -586,11 +586,44 @@
                   <!-- Add more fields as needed -->
                 </div>
                 <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#passengerListModal" id="showPassengersButton">Show Passengers</button>
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
               </div>
             </div>
           </div>
+
+          <div class="modal fade" id="passengerListModal" tabindex="-1" aria-labelledby="passengerListTitle" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="passengerListTitle">Passenger List</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Seat</th>
+                                    <th>Booking Id</th>
+                                </tr>
+                            </thead>
+                            <tbody id="passengerListItems">
+                                <!-- Passenger names will be added here -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+
+          
         <!-- <div id="container">
             <h1 style="margin-top: 0;">Passenger Table</h1>
             <div id="input-container"> -->
@@ -1314,12 +1347,20 @@
   destinationElement.textContent = `Destination: ${destination}`;
   passengerElement.textContent = `Number of Passenger: ${passenger}`;
 
+
+
+
+
 }
+
+
+
+
   </script>
 
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
-    import { getDatabase,ref,set,get,child, onValue} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
+    import { getDatabase,ref,set,get,child, onValue, query, orderByChild, equalTo} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
     import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js"
     // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
@@ -1397,46 +1438,145 @@
         }
 
 
-// Reference to the data you want to fetch (e.g., 'contacts')
-const dataRef = ref(db,'flight'); // Replace with your path
-  onValue(dataRef, (snapshot) => {
-    // Handle the retrieved data here
-    const data = snapshot.val();
-    createCards(data); // Call a function to create cards
-  });
+        // Reference to the data you want to fetch (e.g., 'contacts')
+        const dataRef = ref(db,'flight'); // Replace with your path
+          onValue(dataRef, (snapshot) => {
+            // Handle the retrieved data here
+            const data = snapshot.val();
+            createCards(data); // Call a function to create cards
+          });
 
-// Function to create a card element
-function createCard(dataItem) {
-    const cardContainer = document.getElementById("cardContainer"); // Get the card container element
-    const card = document.createElement("div"); // Create a new card element
-    card.className = "col-lg-4"; // Set the card's class name or attributes
+        // Function to create a card element
+        function createCard(dataItem) {
+            const cardContainer = document.getElementById("cardContainer"); // Get the card container element
+            const card = document.createElement("div"); // Create a new card element
+            card.className = "col-lg-4"; // Set the card's class name or attributes
 
-    // Create the card's inner content
-    card.innerHTML = `
-      
-          <div class="info-box card">
-            <i class="bi bi-airplane"></i>
-            <h3>${dataItem.flightId}</h3>
-            <!--<p id="content">${dataItem.departureTime}</p> Replace with the relevant data field -->
-            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#flightDetailsModal" onclick="showFlightDetails('${dataItem.flightId}', '${dataItem.departureTime}', '${dataItem.arrivalTime}', '${dataItem.departureDate}', '${dataItem.destination}', '${dataItem.passenger}')">View Details</button>
-          </div>
-        
-    `;
+            // Create the card's inner content
+            card.innerHTML = `
+              
+                  <div class="info-box card">
+                    <i class="bi bi-airplane"></i>
+                    <h3>${dataItem.flightId}</h3>
+                    <!--<p id="content">${dataItem.departureTime}</p> Replace with the relevant data field -->
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#flightDetailsModal" onclick="showFlightDetails('${dataItem.flightId}', '${dataItem.departureTime}', '${dataItem.arrivalTime}', '${dataItem.departureDate}', '${dataItem.destination}', '${dataItem.passenger}')">View Details</button>
+                  </div>
+                
+            `;
 
-    cardContainer.appendChild(card); // Append the card to the container
-  }
+            cardContainer.appendChild(card); // Append the card to the container
+          }
 
-  // Function to create cards for each data item
-  function createCards(data) {
-    Object.keys(data).forEach((key) => {
-      if (key !== "index") {
-        createCard(data[key]); // Create a card for each data item except for "index"
-      }
-    });
-  }
+          // Function to create cards for each data item
+          function createCards(data) {
+            Object.keys(data).forEach((key) => {
+              if (key !== "index") {
+                createCard(data[key]); // Create a card for each data item except for "index"
+              }
+            });
+          }
 
-  
+          
+          
+//           function showPassengersForFlight(flightId) {
+//   const tableBody = document.getElementById("passengerListItems");
+
+//   // Clear any existing rows in the table
+//   tableBody.innerHTML = "";
+
+//   // Reference to the database node where you store booking data
+//   const bookingsRef = ref(db, "booking");
+
+//   // Create a query to filter bookings by flight ID (assuming 'flightID' is the key)
+//   const flightQuery = query(
+//     bookingsRef,
+//     orderByChild("flightId"),
+//     equalTo(flightId)
+//   );
+
+//   // Fetch passenger data
+//   get(flightQuery).then((snapshot) => {
+//     snapshot.forEach((childSnapshot) => {
+//       const bookingData = childSnapshot.val();
+//       const email = bookingData.email;
+
+//       // Create a new row in the table and populate it with email
+//       const row = document.createElement("tr");
+
+//       const nameCell = document.createElement("td");
+//       nameCell.textContent = email;
+
+//       const actionCell = document.createElement("td");
+//       actionCell.textContent = "Action"; // You can replace this with the desired action
+
+//       row.appendChild(nameCell);
+//       row.appendChild(actionCell);
+
+//       tableBody.appendChild(row);
+//     });
+//   });
+// }
+
+
+
         });
+
+        
+        function showPassengersForFlight(flightId) {
+
+    const tableBody = document.getElementById("passengerListItems");
+
+    // Clear any existing rows in the table
+    tableBody.innerHTML = "";
+
+    // Reference to the database node where you store booking data
+    const bookingsRef = ref(db, "booking");
+
+    // Create a query to filter bookings by flight ID (assuming 'flightID' is the key)
+    const flightQuery = query(
+        bookingsRef,
+        orderByChild("flightId"),
+        equalTo(flightId)
+    );
+    // Fetch passenger data
+    get(flightQuery).then((snapshot) => {
+        snapshot.forEach((childSnapshot) => {
+            const bookingData = childSnapshot.val();
+            const email = bookingData.email;
+
+            // Create a new row in the table and populate it with email
+            const row = document.createElement("tr");
+
+            const nameCell = document.createElement("td");
+            nameCell.textContent = email;
+            console.log(nameCell.textContent);
+
+            const seatCell = document.createElement("td");
+            seatCell.textContent = bookingData.seat; // You can replace this with the desired action
+
+            const bookingIdCell = document.createElement("td");
+            bookingIdCell.textContent = bookingData.bookingId;
+
+            row.appendChild(nameCell);
+            row.appendChild(seatCell);
+            row.appendChild(bookingIdCell);
+
+            tableBody.appendChild(row);
+        });
+    });
+}
+
+        
+        const showPassengersButton = document.getElementById("showPassengersButton");
+showPassengersButton.addEventListener("click", function () {
+    // Get the flight ID from the flight details modal
+    const flightId = document.getElementById("flightId").textContent.split(":")[1].trim();
+    showPassengersForFlight(flightId);
+});
+// Add a click event listener to the "Details" button
+
+
+
 
         logOutItem.addEventListener('click', function (event) {
             event.preventDefault(); // Prevent the default link behavior

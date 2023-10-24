@@ -93,24 +93,24 @@ class _ProfileTabPageState extends State<ProfileTabPage> {
                   // ),
 
                   //button
-                  SizedBox(
-                    width: 400,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const ProfileDetailPage()));
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.yellow[200],
-                        side: BorderSide.none,
-                        shape: const StadiumBorder(),
-                      ),
-                      child: const Text(
-                        'View Profile Details',
-                        style: TextStyle(color: Colors.black,fontSize: 15),
-                      ),
-                    ),
-                  ),
+                  // SizedBox(
+                  //   width: 400,
+                  //   child: ElevatedButton(
+                  //     onPressed: () {
+                        // Navigator.of(context).push(MaterialPageRoute(
+                        //     builder: (context) => const ProfileDetailPage()));
+                  //     },
+                  //     style: ElevatedButton.styleFrom(
+                  //       backgroundColor: Colors.yellow[200],
+                  //       side: BorderSide.none,
+                  //       shape: const StadiumBorder(),
+                  //     ),
+                  //     child: const Text(
+                  //       'View Profile Details',
+                  //       style: TextStyle(color: Colors.black,fontSize: 15),
+                  //     ),
+                  //   ),
+                  // ),
                   const SizedBox(height: 30),
                   const Divider(),
                   const SizedBox(height: 10),

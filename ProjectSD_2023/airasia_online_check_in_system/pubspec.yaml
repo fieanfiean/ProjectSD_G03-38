@@ -50,6 +50,17 @@ dependencies:
   cached_network_image: ^3.2.3
   url_launcher: ^6.1.14
   flutter_launcher_icons: ^0.13.1
+  qr_flutter: ^4.1.0
+  pdf: ^3.10.4
+  open_file: ^3.3.2
+  google_fonts: ^6.1.0
+  image_to_pdf_converter:
+    git:
+      url: https://github.com/talha828/Images_to_pdf
+      path: packages/image_to_pdf_converter
+  mailer: ^6.0.1
+
+
 
 dev_dependencies:
   flutter_test:

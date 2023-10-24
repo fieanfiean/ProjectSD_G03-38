@@ -1,6 +1,7 @@
 import 'package:airasia_online_check_in_system/main_page/history-page.dart';
 import 'package:airasia_online_check_in_system/main_page/profile_page.dart';
 import 'package:airasia_online_check_in_system/main_page/search_ticket_page.dart';
+import 'package:airasia_online_check_in_system/profile/profile_detail_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -26,8 +27,9 @@ void onTabTapped(int index) {
 
 final List <Widget> _pageOptions = [
   const SearchTicketTabPage(),
-  const HistoryTabPage(),
-  const ProfileTabPage()
+  // const HistoryTabPage(),
+  const ProfileDetailPage(),
+  const ProfileTabPage(),
 ];
 
 @override
@@ -193,12 +195,12 @@ class CustomBottomNavigationBar extends StatelessWidget {
             label: 'Search Ticket',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.history),
-            label: 'History',
-          ),
-          BottomNavigationBarItem(
             icon: Icon(Icons.account_circle),
             label: 'Profile',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.info),
+            label: 'Info',
           ),
         ],
       ),

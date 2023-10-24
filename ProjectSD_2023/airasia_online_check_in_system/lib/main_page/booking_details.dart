@@ -1,3 +1,4 @@
+import 'package:airasia_online_check_in_system/main_page/check_in_page.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
@@ -78,6 +79,40 @@ Widget buildBackgroundImage() {
                         title: Text('Arrival Time: ${flightData['arrivalTime']}'),
                       ),
                       
+                      Padding(
+                      padding: const EdgeInsets.only(top: 50),
+                      child: Align(
+                          alignment: Alignment.bottomCenter,
+                          child: SizedBox(
+                            width: 330,
+                            height: 50,
+                            child: ElevatedButton(
+                              onPressed: (){
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) => CheckInPage(
+                                      bookingData: bookingData, // Pass the booking data
+                                      flightData: flightData,   // Pass the flight data
+                                    ),
+                                  ),
+                                );                             
+                                // if (_formKey.currentState!.validate()) {
+                                //   // Form is valid, perform the search
+                                //   searchBooking();
+                                // }
+
+                              },
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.yellow[200],
+                                  side: BorderSide.none,
+                                  shape: const StadiumBorder(),
+                                ),
+                              child: const Text(
+                                'Check in',
+                                style: TextStyle(fontSize: 15,color: Colors.black),
+                              ),
+                            ),
+                          )))
                       // Add more ListTile widgets for other data
                     ],
                   );

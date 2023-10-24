@@ -27,7 +27,8 @@ class _ProfileDetailPageState extends State<ProfileDetailPage> {
 
   Future<void> refreshPage() async{
     await user?.reload();
-    
+    // await Navigator.of(context).push(MaterialPageRoute(
+    //                         builder: (context) => const ProfileDetailPage()));
   }
 
   final profilePictureKey = GlobalKey();
@@ -82,9 +83,12 @@ class _ProfileDetailPageState extends State<ProfileDetailPage> {
 
 
       if (editForm == const EditImagePage()){
+        if (updatedURL != null) {
+
           setState(() {
             _userPhotoURL = updatedURL!;
           });
+        }
       }
       
       else if(editForm == EditNamePage()){
@@ -127,12 +131,12 @@ class _ProfileDetailPageState extends State<ProfileDetailPage> {
   ),
 );
     return Scaffold(
-      appBar:AppBar(
-              backgroundColor: Colors.red,
-              elevation: 0,
-              title: const Text('Edit Profile'),
-              centerTitle: true,
-            ),
+      // appBar:AppBar(
+      //         backgroundColor: Colors.red,
+      //         elevation: 0,
+      //         title: const Text('Edit Profile'),
+      //         centerTitle: true,
+      //       ),
       body: 
         RefreshIndicator(
           onRefresh: refreshPage,
