@@ -1,4 +1,5 @@
 import 'package:airasia_online_check_in_system/main_page/generate_boarding_pass_page.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
 class CheckInPage extends StatefulWidget {
@@ -33,6 +34,15 @@ class _CheckInPageState extends State<CheckInPage> {
     ),
   );
 }
+
+void updateBookingStatus() {
+    // Update the status in the booking data from "Booked" to "Checked In"
+    widget.bookingData['status'] = 'Checked In';
+    final database = FirebaseDatabase.instance.ref();
+    final userData = database.child('booking/' + widget.bookingData['bookingId']);
+    userData
+    .update({'status': 'Checked In'});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -163,6 +173,9 @@ class _CheckInPageState extends State<CheckInPage> {
                                   String userPassport = passport.text;
                                   String baggageSelection = baggage;
 
+                                  updateBookingStatus();
+                                  print(widget.bookingData);
+                                  print(widget.bookingData['status']);
                                   Navigator.of(context).push(
                                   MaterialPageRoute(
                                     builder: (context) => GenerateBoardingPass(

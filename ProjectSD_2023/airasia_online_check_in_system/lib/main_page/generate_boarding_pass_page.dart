@@ -10,7 +10,6 @@ import 'dart:convert';
 import 'dart:typed_data';
 import 'package:mailer/smtp_server.dart';
 
-
 class GenerateBoardingPass extends StatefulWidget {
   final Map<dynamic, dynamic> bookingData;
   final Map<dynamic, dynamic> flightData;
@@ -31,7 +30,79 @@ class GenerateBoardingPass extends StatefulWidget {
 }
 
 class _GenerateBoardingPassState extends State<GenerateBoardingPass> {
-  late String qrDataString;
+String qrDataString = ''; // Declare the global variable here
+
+  @override
+  void initState() {
+    super.initState();
+    generateQRCodeAndSendEmail();
+  }
+
+  Future<void> generateQRCodeAndSendEmail() async {
+    Map<String, dynamic> data = {
+  "fullName": widget.fullName,
+  "userPassport": widget.userPassport,
+  "baggageSelection": widget.baggageSelection,
+  "BookingId": widget.bookingData["bookingId"],
+};
+
+     qrDataString = json.encode(data);
+
+
+    // Generate the QR code and save it as a PDF
+    final pdf = pw.Document();
+    final qrPainter = QrPainter(
+      data: qrDataString,
+      version: QrVersions.auto,
+    );
+    Uint8List qrBytes = Uint8List.fromList((await qrPainter.toImageData(2000))!.buffer.asUint8List());
+    pdf.addPage(
+      pw.Page(
+        pageFormat: PdfPageFormat.a4,
+        build: (pw.Context context) {
+          return pw.Center(
+            child: pw.Image(
+              pw.MemoryImage(qrBytes),
+              width: 500,
+              height: 500,
+            ),
+          );
+        },
+      ),
+    );
+    final directory = Platform.isAndroid
+        ? await getExternalStorageDirectory()
+        : await getApplicationDocumentsDirectory();
+    final filePath = '${directory?.path}/boarding_pass.pdf';
+    final file = File(filePath);
+    await file.writeAsBytes(await pdf.save());
+
+    // Send the email
+    sendEmail(file);
+  }
+
+  Future<void> sendEmail(File file) async {
+    final server = gmail('christopherjun@graduate.utm.my', 'qwe123asd456zxc789');
+    final email = Message()
+      ..from = const Address('christopherooi2801@gmail.com')
+      ..recipients.add(Address(widget.bookingData['email'] as String))
+      ..subject = 'Boarding Pass'
+      ..attachments.add(FileAttachment(file));
+
+    try {
+      final sendReport = await send(email, server);
+      print('Message sent: ' + sendReport.toString());
+    } on MailerException catch (e) {
+      print('Message not sent.' + e.message);
+      for (var p in e.problems) {
+        print('Problem: ${p.code}: ${p.msg}');
+      }
+    }
+
+    // if (await file.exists()) {
+    //   OpenFile.open(file.path);
+    // }
+  }
 
   Future<void> _createAndSavePDF() async {
     final pdf = pw.Document();
@@ -83,22 +154,22 @@ pdf.addPage(
 
     if (await file.exists()) {
       OpenFile.open(file.path);
-      final server = gmail('christopherjun@graduate.utm.my', 'qwe123asd456zxc789'); // Use your Gmail credentials
-      final email =  Message()
-        ..from = const Address('christopherooi2801@gmail.com')
-        ..recipients.add(Address(widget.bookingData['email'] as String)) // Ensure that 'email' is a string
-        ..subject ='Boarding Pass'
-        ..attachments.add(FileAttachment(file));
+  //     final server = gmail('christopherjun@graduate.utm.my', 'qwe123asd456zxc789'); // Use your Gmail credentials
+  //     final email =  Message()
+  //       ..from = const Address('christopherooi2801@gmail.com')
+  //       ..recipients.add(Address(widget.bookingData['email'] as String)) // Ensure that 'email' is a string
+  //       ..subject ='Boarding Pass'
+  //       ..attachments.add(FileAttachment(file));
 
-    try {
-    final sendReport = await send(email, server);
-    print('Message sent: ' + sendReport.toString());
-  } on MailerException catch (e) {
-    print('Message not sent.'+e.message);
-    for (var p in e.problems) {
-      print('Problem: ${p.code}: ${p.msg}');
-    }
-  }
+  //   try {
+  //   final sendReport = await send(email, server);
+  //   print('Message sent: ' + sendReport.toString());
+  // } on MailerException catch (e) {
+  //   print('Message not sent.'+e.message);
+  //   for (var p in e.problems) {
+  //     print('Problem: ${p.code}: ${p.msg}');
+  //   }
+  // }
 
 
     }
@@ -106,17 +177,6 @@ pdf.addPage(
 
   @override
   Widget build(BuildContext context) {
-    String qrData = 
-      "fullName: " + widget.fullName + "\n" +
-      "userPassport: " + widget.userPassport + "\n" +
-      "baggageSelection: " + widget.baggageSelection;
-
-      // "bookingData": widget.bookingData,
-      // "flightData": widget.flightData,
-    ;
-
-    qrDataString = json.encode(qrData);
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Boarding Pass'),
@@ -130,12 +190,17 @@ pdf.addPage(
             version: QrVersions.auto,
             size: 200,
           ),
+          
         ),
+        
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _createAndSavePDF,
-        child: Icon(Icons.file_download),
-      ),
+          onPressed: () {
+            _createAndSavePDF();
+          },
+          child: Icon(Icons.file_download),
+        ),
+
     );
   }
 }

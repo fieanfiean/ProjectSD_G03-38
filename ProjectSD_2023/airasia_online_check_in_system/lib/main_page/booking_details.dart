@@ -50,6 +50,7 @@ Widget buildBackgroundImage() {
                 if (flightSnapshot.hasData && flightSnapshot.data!.snapshot.value != null) {
                   Map<dynamic, dynamic> flightData =
                       flightSnapshot.data!.snapshot.value as Map<dynamic, dynamic>; // Explicit casting
+                String userStatus = bookingData['status'];
 
                   // Display the booking and flight details here
                   return ListView(
@@ -79,6 +80,7 @@ Widget buildBackgroundImage() {
                         title: Text('Arrival Time: ${flightData['arrivalTime']}'),
                       ),
                       
+                      if(userStatus == "Booked")
                       Padding(
                       padding: const EdgeInsets.only(top: 50),
                       child: Align(
@@ -113,6 +115,17 @@ Widget buildBackgroundImage() {
                               ),
                             ),
                           )))
+                          else
+                          Padding(
+                            padding: const EdgeInsets.only(top: 50),
+                            child: Align(
+                              alignment: Alignment.bottomCenter,
+                              child: Text(
+                                'You have checked in, please download your boarding pass from your email',
+                                style: TextStyle(fontSize: 15, color: Colors.black),
+                              ),
+                            ),
+                          ),
                       // Add more ListTile widgets for other data
                     ],
                   );
