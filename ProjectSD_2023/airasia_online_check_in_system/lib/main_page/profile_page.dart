@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import, unused_field, unnecessary_null_comparison, unused_local_variable, library_private_types_in_public_api, avoid_print, sized_box_for_whitespace, unused_element, prefer_const_constructors
+
 import 'package:airasia_online_check_in_system/main_page/about_us.dart';
 import 'package:airasia_online_check_in_system/main_page/contact_us.dart';
 import 'package:airasia_online_check_in_system/profile/profile_detail_view.dart';

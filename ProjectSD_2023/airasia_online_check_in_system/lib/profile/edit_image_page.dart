@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import, depend_on_referenced_packages, use_build_context_synchronously, avoid_print, sized_box_for_whitespace, prefer_const_constructors
+
 import 'dart:io';
 import 'package:airasia_online_check_in_system/views/login_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -134,17 +136,17 @@ class _EditImagePageState extends State<EditImagePage> {
                   height: 50,
                   child: ElevatedButton(
                     onPressed: isUploading ? null : () => uploadImageToFirebase(context),
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.yellow[200],
+                              side: BorderSide.none,
+                              shape: const StadiumBorder(),
+                            ),
                     child: isUploading
                         ? CircularProgressIndicator()
                         : const Text(
                             'Update',
                             style: TextStyle(fontSize: 15,color: Colors.black),
                           ),
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.yellow[200],
-                              side: BorderSide.none,
-                              shape: const StadiumBorder(),
-                            ),
                   ),
                 ),
               ),

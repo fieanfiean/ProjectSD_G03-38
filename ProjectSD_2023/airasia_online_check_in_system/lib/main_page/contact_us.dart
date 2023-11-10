@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api, sized_box_for_whitespace, prefer_const_constructors
+
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -80,6 +82,7 @@ class _ContactUsPageState extends State<ContactUsPage> {
 ];
 
   Widget _buildSection(String title, String subtitle, int index) {
+    // ignore: unused_local_variable
     Color color = sectionColors[index % sectionColors.length];
     IconData icon = sectionIcons[index % sectionIcons.length]; // Get the icon
     return Container(

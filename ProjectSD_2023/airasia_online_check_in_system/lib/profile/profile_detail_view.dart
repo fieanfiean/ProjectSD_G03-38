@@ -86,7 +86,7 @@ class _ProfileDetailPageState extends State<ProfileDetailPage> {
         if (updatedURL != null) {
 
           setState(() {
-            _userPhotoURL = updatedURL!;
+            _userPhotoURL = updatedURL;
           });
         }
       }

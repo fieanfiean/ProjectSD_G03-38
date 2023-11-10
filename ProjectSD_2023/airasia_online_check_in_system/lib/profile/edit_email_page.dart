@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import, prefer_const_constructors, prefer_interpolation_to_compose_strings, use_build_context_synchronously, duplicate_ignore, avoid_print, sized_box_for_whitespace, sort_child_properties_last
+
 import 'package:airasia_online_check_in_system/views/login_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
