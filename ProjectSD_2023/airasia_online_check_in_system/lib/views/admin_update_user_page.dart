@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import, unnecessary_import, camel_case_types, prefer_interpolation_to_compose_strings, avoid_print, non_constant_identifier_names, sort_child_properties_last
+
 import 'dart:convert';
 
 import 'package:airasia_online_check_in_system/views/login_view.dart';

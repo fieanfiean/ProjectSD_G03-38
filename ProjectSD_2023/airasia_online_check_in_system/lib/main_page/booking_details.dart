@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types, use_key_in_widget_constructors, prefer_const_constructors_in_immutables, prefer_const_constructors
+
 import 'package:airasia_online_check_in_system/main_page/check_in_page.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';

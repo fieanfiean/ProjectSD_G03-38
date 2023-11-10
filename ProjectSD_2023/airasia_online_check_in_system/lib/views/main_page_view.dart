@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import, unused_local_variable, deprecated_member_use, prefer_interpolation_to_compose_strings, avoid_print, use_key_in_widget_constructors, prefer_const_constructors_in_immutables, sized_box_for_whitespace
+
 import 'package:airasia_online_check_in_system/main_page/history-page.dart';
 import 'package:airasia_online_check_in_system/main_page/profile_page.dart';
 import 'package:airasia_online_check_in_system/main_page/search_ticket_page.dart';

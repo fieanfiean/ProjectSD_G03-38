@@ -1,4 +1,4 @@
-// ignore_for_file: use_build_context_synchronously
+// ignore_for_file: use_build_context_synchronously, sized_box_for_whitespace, prefer_const_constructors, avoid_print, sort_child_properties_last
 
 import 'package:airasia_online_check_in_system/main.dart';
 import 'package:airasia_online_check_in_system/views/forgot_password_view.dart';

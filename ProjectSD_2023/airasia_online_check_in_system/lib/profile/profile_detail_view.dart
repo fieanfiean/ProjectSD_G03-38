@@ -1,4 +1,4 @@
-// ignore_for_file: unused_import
+// ignore_for_file: unused_import, unnecessary_null_comparison, prefer_final_fields, prefer_interpolation_to_compose_strings, avoid_print, prefer_const_constructors, use_build_context_synchronously, sized_box_for_whitespace, unnecessary_string_interpolations, sort_child_properties_last
 
 import 'dart:async';
 import 'dart:ffi';

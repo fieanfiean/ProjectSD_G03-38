@@ -1,4 +1,4 @@
-// ignore_for_file: unused_import
+// ignore_for_file: unused_import, avoid_print
 
 import 'package:airasia_online_check_in_system/firebase_options.dart';
 import 'package:airasia_online_check_in_system/profile/edit_email_page.dart';

@@ -1,4 +1,6 @@
 // ignore: unused_import
+// ignore_for_file: avoid_print, unused_import, duplicate_ignore, use_build_context_synchronously, prefer_const_constructors
+
 import 'package:airasia_online_check_in_system/views/login_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

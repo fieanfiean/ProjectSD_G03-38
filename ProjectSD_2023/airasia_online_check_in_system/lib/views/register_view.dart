@@ -1,9 +1,10 @@
+// ignore_for_file: unused_local_variable, sized_box_for_whitespace, prefer_const_constructors, prefer_interpolation_to_compose_strings, avoid_print, sort_child_properties_last
+
 import 'package:airasia_online_check_in_system/main.dart';
 import 'package:airasia_online_check_in_system/views/login_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 // ignore: unused_import
 import 'package:firebase_core/firebase_core.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 

@@ -1,3 +1,5 @@
+// ignore_for_file: sized_box_for_whitespace, use_build_context_synchronously, sort_child_properties_last, prefer_const_constructors
+
 import 'package:airasia_online_check_in_system/views/login_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

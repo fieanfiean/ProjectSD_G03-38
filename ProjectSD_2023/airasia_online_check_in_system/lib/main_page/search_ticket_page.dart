@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api, unnecessary_new, avoid_print, prefer_const_constructors
+
 import 'package:airasia_online_check_in_system/main_page/booking_details.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';

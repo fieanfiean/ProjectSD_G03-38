@@ -1,3 +1,5 @@
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors
+
 import 'package:airasia_online_check_in_system/views/login_view.dart';
 import 'package:flutter/material.dart';
 
