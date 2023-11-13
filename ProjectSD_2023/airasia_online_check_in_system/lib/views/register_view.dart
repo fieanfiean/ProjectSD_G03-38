@@ -57,29 +57,8 @@ class _RegisterViewState extends State<RegisterView> {
       body: Stack(
         children: [
           buildBackgroundImage(),
-
           Column(
         children: [
-          // TextField(
-          //   controller: _email,
-          //   enableSuggestions: false,
-          //   autocorrect: false,
-          //   keyboardType: TextInputType.emailAddress,
-          //   decoration: const InputDecoration(
-          //     hintText: 'Enter your email here'
-          //   ),
-          // ),
-      
-          // TextField(
-          //   controller: _password,
-          //   obscureText: true,
-          //   enableSuggestions: false,
-          //   autocorrect: false,
-          //   decoration: const InputDecoration(
-          //     hintText: 'Enter your password here',  
-          //   ),
-          // ),
-
           Padding(
                     padding: EdgeInsets.only(top: 40),
                     child: SizedBox(
@@ -91,7 +70,6 @@ class _RegisterViewState extends State<RegisterView> {
                           keyboardType: TextInputType.emailAddress,
                           decoration: const InputDecoration(
                               labelText: 'Your email address'),
-                               
                           controller: _email,
                         ))),
           Padding(
@@ -109,7 +87,6 @@ class _RegisterViewState extends State<RegisterView> {
                         ))),
       
           Text(errorMessage, style: TextStyle(color: Colors.red)), // Error message text
-
           Padding(
             padding: EdgeInsets.only(top: 40),
             child: Align(
@@ -145,8 +122,6 @@ class _RegisterViewState extends State<RegisterView> {
                         );
                       },
                     );
-                    // final user = User(email: email);
-                    // createUser(user);
                     final user = FirebaseAuth.instance.currentUser?.uid;
                     final database = FirebaseDatabase.instance.ref();
                     final userData = database.child('user/' + user!);
@@ -154,9 +129,6 @@ class _RegisterViewState extends State<RegisterView> {
                     .set({'email': email,'type': 'passenger', 'uid':user, 'username':""});
                     // ignore: use_build_context_synchronously
                     Navigator.of(context).push(MaterialPageRoute(builder: (context)=> const HomePage()));
-
-
-                    //print(userCredential);
                     } on FirebaseAuthException catch(e) {
                       if(e.code == 'weak-password'){
                         print('Weak password');
@@ -201,17 +173,6 @@ class _RegisterViewState extends State<RegisterView> {
       )
     );
   }
-
-
-
-  Future createUser(User user) async {
-      // final docUser = FirebaseFirestore.instance.collection('User').doc();
-      // user.id = docUser.id;
-      // final json = user.toJson();
-      // await docUser.set(json);
-
-      
-    }
 }
 
 class User {

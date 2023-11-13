@@ -33,8 +33,6 @@ void updateUserValue(String email) async{
       try {
         List<String> signInMethods = await auth.fetchSignInMethodsForEmail(email);
         if (signInMethods.isEmpty) {
-          // Email is not in use, allow the update
-          // Update the email using auth.currentUser.updateEmail(newEmail);
           await user!.updateEmail(email);
           // ignore: use_build_context_synchronously
           showDialog(
@@ -63,8 +61,6 @@ void updateUserValue(String email) async{
                   builder: (context) => const LoginView())
                 );
         } else {
-          // Email is already in use
-          // Handle this case, e.g., show an error message to the user
           // ignore: use_build_context_synchronously
           showDialog(
             context: context,
@@ -84,18 +80,9 @@ void updateUserValue(String email) async{
             },
           );
         }
-        // Update the user's email address
-
-        // If the email update is successful, the user's email will be changed.
-        // You may also want to update the user's email in your Firestore or other databases.
-
         print('Email updated successfully');
       } on FirebaseAuthException catch (e) {
-        // Handle any FirebaseAuthException that may occur
         if (e.code == 'requires-recent-login') {
-          // The user must reauthenticate before updating email
-          // You can ask the user to re-enter their password and then reauthenticate
-          // by calling `reauthenticateWithCredential` before calling `updateEmail`.
           print('Requires recent login. Please reauthenticate.');
         } else {
           print('Error updating Email: ${e.message}');
@@ -202,22 +189,10 @@ void updateUserValue(String email) async{
                           height: 50,
                           child: ElevatedButton(
                             onPressed: () async {
-                              // Validate returns true if the form is valid, or false otherwise.
                               if (_formKey.currentState!.validate() &&
                                   EmailValidator.validate(
                                       emailController.text)) {
                                 updateUserValue(emailController.text);
-                                // final shouldLogout = await showLogOutDialog(context);
-                                //   if (shouldLogout) {
-                                //     await FirebaseAuth.instance.signOut();
-                                //     // ignore: use_build_context_synchronously
-                                //     Navigator.of(context).push(
-                                //     MaterialPageRoute(
-                                //       builder: (context) => const LoginView())
-                                //     );
-                                //   }
-                                // Navigator.pop(context,emailController.text);
-
                               }
                               else{
                                 showDialog(

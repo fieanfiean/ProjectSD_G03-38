@@ -24,16 +24,7 @@ class _MySearchTicketTabPageState extends State<SearchTicketTabPage> {
 
   @override
   void initState() {
-    // items = duplicateItems;
     super.initState();
-  }
-
-  void filterSearchResults(String query) {
-    setState(() {
-      // items = duplicateItems
-      //     .where((item) => item.toLowerCase().contains(query.toLowerCase()))
-      //     .toList();
-    });
   }
 
   Widget buildBackgroundImage() {
@@ -49,20 +40,13 @@ class _MySearchTicketTabPageState extends State<SearchTicketTabPage> {
   void searchBooking() {
     final String enteredBookingId = bookingId.text.trim();
     final String userEmail = email.text.trim();
-    // print(userEmail);
-    // print(enteredBookingId);
-
-    // Create a reference to the "bookings" node in your Firebase Realtime Database
     DatabaseReference databaseRef = FirebaseDatabase.instance.ref().child('booking');
-
-    // Perform the query to search for the booking
     databaseRef
     .orderByKey()
     .equalTo(enteredBookingId) // Use the new variable name here
     .onValue.listen((event) {
       if (event.snapshot.value != null) {
         Map<dynamic, dynamic> values = event.snapshot.value as Map<dynamic, dynamic>;
-        // Loop through the matching bookings (there could be multiple with the same bookingId)
         values.forEach((key, value) {
           if (value["email"] == userEmail) {
             // Found a matching booking
@@ -75,12 +59,7 @@ class _MySearchTicketTabPageState extends State<SearchTicketTabPage> {
         print("Booking not found.");
       }
     });
-
   }
-
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -113,12 +92,10 @@ class _MySearchTicketTabPageState extends State<SearchTicketTabPage> {
                       height: 100,
                       width: 250,
                       child: TextFormField(
-                        // Handles Form Validation for First Name
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Please enter your booking Id';
                           }
-                          // You can add more validation rules here
                           return null;
                         },
                         decoration: const InputDecoration(labelText: 'booking id'),
@@ -139,7 +116,6 @@ class _MySearchTicketTabPageState extends State<SearchTicketTabPage> {
                           } else if (!RegExp(r'^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$').hasMatch(value)) {
                             return 'Please enter a valid email address';
                           }
-                          // You can add more validation rules here
                           return null;
                         },
                         decoration: const InputDecoration(labelText: 'booking email'),
@@ -156,19 +132,9 @@ class _MySearchTicketTabPageState extends State<SearchTicketTabPage> {
                             height: 50,
                             child: ElevatedButton(
                               onPressed: (){
-                                // String updatedUsername = firstNameController.text + " " + secondNameController.text;
-                                // // Validate returns true if the form is valid, or false otherwise.
-                                //  if (_formKey.currentState!.validate() &&
-                                //     RegExp(r'^[a-zA-Z]+$').hasMatch(firstNameController.text +
-                                //         secondNameController.text)) {
-                                //   updateUserValue(updatedUsername);
-                                  // Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ProfileDetailPage()));
-                                // }
                                 if (_formKey.currentState!.validate()) {
-                                  // Form is valid, perform the search
                                   searchBooking();
                                 }
-
                               },
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.yellow[200],

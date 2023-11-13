@@ -32,25 +32,14 @@ class _EditImagePageState extends State<EditImagePage> {
         final storageRef = storage.ref().child('profile_pictures/${user?.uid}');
         final uploadTask = storageRef.putFile(File(imagePath!));
 
-        // Wait for the upload to complete.
         await uploadTask.whenComplete(() async {
-          // Get the download URL for the uploaded image.
           final downloadURL = await storageRef.getDownloadURL();
-
-          // Update the user's profile with the new photo URL.
           await user?.updatePhotoURL(downloadURL);
-
-          // Reload the user to get the updated information.
           await user?.reload();
-
-          // Update the 'user' object with the reloaded user data.
           user = FirebaseAuth.instance.currentUser;
-
           setState(() {
             isUploading = false;
           });
-
-          // Navigate back to the previous screen.
           Navigator.pop(context,downloadURL);
         });
       } else {
@@ -59,8 +48,7 @@ class _EditImagePageState extends State<EditImagePage> {
         });
       }
     } catch (e) {
-      // Handle errors
-      print('Error uploading image: $e');
+       print('Error uploading image: $e');
       setState(() {
         isUploading = false;
       });

@@ -20,44 +20,12 @@ class _EditNamePageState extends State<EditNamePage> {
   final secondNameController = TextEditingController();
   var user = FirebaseAuth.instance.currentUser?.displayName;
 
-//   void showSnackbar(BuildContext context, String message) {
-//   if (mounted) {
-//     ScaffoldMessenger.of(context).showSnackBar(
-//       SnackBar(
-//         content: Text(message),
-//         duration: const Duration(seconds: 3),
-//       ),
-//     );
-//   }
-// }
-
     @override
   void dispose() {
     firstNameController.dispose();
     secondNameController.dispose();
     super.dispose();
   }
-
-  // void updateUserValue(String displayName) async {
-  //     final User? currentUser = FirebaseAuth.instance.currentUser;
-
-  //     if (currentUser != null) {
-  //       // Update the user's data as needed, e.g., update the displayName on Firebase
-  //       // For example:
-  //       // await currentUser.updateDisplayName(displayName);
-
-  //       // Fetch the updated user information from Firebase
-  //       final updatedUser = FirebaseAuth.instance.currentUser;
-
-  //       // Call the callback to update the user data in ProfileDetailPage
-  //       if (updatedUser != null) {
-  //         widget.onUpdateName(displayName);
-  //       }
-
-  //       // Close the EditNamePage
-  //       Navigator.pop(context);
-  //     } 
-  // }
 
   Widget buildBackgroundImage() {
   return Container(
@@ -185,7 +153,4 @@ class _EditNamePageState extends State<EditNamePage> {
     Navigator.pop(context,displayName);
 
 }
-
-
-
 }

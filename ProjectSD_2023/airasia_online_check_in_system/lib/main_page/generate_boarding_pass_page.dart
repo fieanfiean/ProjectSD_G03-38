@@ -49,9 +49,6 @@ String qrDataString = ''; // Declare the global variable here
 };
 
      qrDataString = json.encode(data);
-
-
-    // Generate the QR code and save it as a PDF
     final pdf = pw.Document();
     final qrPainter = QrPainter(
       data: qrDataString,
@@ -78,8 +75,6 @@ String qrDataString = ''; // Declare the global variable here
     final filePath = '${directory?.path}/boarding_pass.pdf';
     final file = File(filePath);
     await file.writeAsBytes(await pdf.save());
-
-    // Send the email
     sendEmail(file);
   }
 
@@ -100,10 +95,6 @@ String qrDataString = ''; // Declare the global variable here
         print('Problem: ${p.code}: ${p.msg}');
       }
     }
-
-    // if (await file.exists()) {
-    //   OpenFile.open(file.path);
-    // }
   }
 
   Future<void> _createAndSavePDF() async {
@@ -115,65 +106,33 @@ String qrDataString = ''; // Declare the global variable here
       // size: 200,
     );
 
-//    final pdfImage = PdfImage(
-//   pdf.document,
-//   image: Uint8List.fromList((await qrPainter.toImageData(2000))!.buffer.asUint8List()),
-//   width: 500,
-//   height: 500,
-// );
+    Uint8List qrBytes = Uint8List.fromList((await qrPainter.toImageData(2000))!.buffer.asUint8List());
 
-Uint8List qrBytes = Uint8List.fromList((await qrPainter.toImageData(2000))!.buffer.asUint8List());
-
-pdf.addPage(
-  pw.Page(
-    pageFormat: PdfPageFormat.a4,
-    build: (pw.Context context) {
-      return pw.Center(
-        child: pw.Image(
-          pw.MemoryImage(qrBytes),
-          width: 500,
-          height: 500,
-        ),
-      );
-    },
-  ),
-);
-
-
-
+    pdf.addPage(
+      pw.Page(
+        pageFormat: PdfPageFormat.a4,
+        build: (pw.Context context) {
+          return pw.Center(
+            child: pw.Image(
+              pw.MemoryImage(qrBytes),
+              width: 500,
+              height: 500,
+            ),
+          );
+        },
+      ),
+    );
 
     final directory = Platform.isAndroid
       ? await getExternalStorageDirectory()
       : await getApplicationDocumentsDirectory();
-
-  // Define the file path
-  final filePath = '${directory?.path}/boarding_pass.pdf';
-
-  // Create and save the PDF file
-  final file = File(filePath);
-  print(file);
-  await file.writeAsBytes(await pdf.save());
+    final filePath = '${directory?.path}/boarding_pass.pdf';
+    final file = File(filePath);
+    print(file);
+    await file.writeAsBytes(await pdf.save());
 
     if (await file.exists()) {
       OpenFile.open(file.path);
-  //     final server = gmail('christopherjun@graduate.utm.my', 'qwe123asd456zxc789'); // Use your Gmail credentials
-  //     final email =  Message()
-  //       ..from = const Address('christopherooi2801@gmail.com')
-  //       ..recipients.add(Address(widget.bookingData['email'] as String)) // Ensure that 'email' is a string
-  //       ..subject ='Boarding Pass'
-  //       ..attachments.add(FileAttachment(file));
-
-  //   try {
-  //   final sendReport = await send(email, server);
-  //   print('Message sent: ' + sendReport.toString());
-  // } on MailerException catch (e) {
-  //   print('Message not sent.'+e.message);
-  //   for (var p in e.problems) {
-  //     print('Problem: ${p.code}: ${p.msg}');
-  //   }
-  // }
-
-
     }
   }
 

@@ -28,9 +28,7 @@ class _ProfileTabPageState extends State<ProfileTabPage> {
   }
 
   void updatePhotoURL(String newURL) {
-    // Check if the newURL is not null and the user is not null
     if (newURL != null && user!.photoURL != null) {
-      // Trigger a rebuild of the profile picture widget
       setState(() {
         print(newURL);
         _userPhotoURL = newURL;
@@ -62,9 +60,7 @@ class _ProfileTabPageState extends State<ProfileTabPage> {
         return 'assets/default_user.png';
       }
     }
-
     final profilePictureKey = GlobalKey();
-
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 222, 212, 185),
       body: Stack(
@@ -76,49 +72,9 @@ class _ProfileTabPageState extends State<ProfileTabPage> {
               padding: const EdgeInsets.all(16),
               child: Column(
                 children: [
-                  //Profile Pic
-                  // Stack(
-                  //   children: [
-                  //     SizedBox(
-                  //       width: 120,
-                  //       height: 120,
-                  //       child: ClipRRect(
-                  //           borderRadius: BorderRadius.circular(100),
-                  //           child: CachedNetworkImage(
-                  //               imageUrl: user?.photoURL ?? 'assets/default_user.png', // Use the default image if user?.photoURL is null
-                  //               fit: BoxFit.cover,
-                  //               key: ValueKey<String>(_userPhotoURL),
-                  //             )
-                  //         ),
-                  //     ),
-                  //   ],
-                  // ),
-
-                  //button
-                  // SizedBox(
-                  //   width: 400,
-                  //   child: ElevatedButton(
-                  //     onPressed: () {
-                        // Navigator.of(context).push(MaterialPageRoute(
-                        //     builder: (context) => const ProfileDetailPage()));
-                  //     },
-                  //     style: ElevatedButton.styleFrom(
-                  //       backgroundColor: Colors.yellow[200],
-                  //       side: BorderSide.none,
-                  //       shape: const StadiumBorder(),
-                  //     ),
-                  //     child: const Text(
-                  //       'View Profile Details',
-                  //       style: TextStyle(color: Colors.black,fontSize: 15),
-                  //     ),
-                  //   ),
-                  // ),
                   const SizedBox(height: 30),
                   const Divider(),
                   const SizedBox(height: 10),
-
-                  //Menu
-                  //ProfileMenuWidget(title: 'Edit Profile',icon: Icons.edit,onPress: () {}),
                   ProfileMenuWidget(
                       title: 'About Us',
                       icon: Icons.info,
@@ -147,10 +103,7 @@ class _ProfileTabPageState extends State<ProfileTabPage> {
                         }
                       }),
                 ],
-              ),
-            ),
-          ),
-        ],
+              ),),),],
       )
     );
   }
@@ -196,9 +149,7 @@ class ProfileMenuWidget extends StatelessWidget {
             color: Colors.grey.withOpacity(0.1),
           ),
           child: const Icon(Icons.arrow_forward_ios, color: Colors.grey),
-        ),
-      ),
-    );
+        ),),);
   }
 }
 
@@ -220,9 +171,6 @@ Future<bool> showLogOutDialog(BuildContext context) {
               Navigator.of(context).pop(true);
             },
             child: const Text('Log out'),
-          ),
-        ],
-      );
-    },
+          ),],);},
   ).then((value) => value ?? false);
 }

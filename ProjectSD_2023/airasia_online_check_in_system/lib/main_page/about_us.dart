@@ -76,14 +76,11 @@ class _AboutUsPageState extends State<AboutUsPage> {
   Icons.flag,
   Icons.check,
   Icons.remove_red_eye,
-  // Add more icons as needed
 ];
 
   Widget _buildSection(String title, String subtitle, int index) {
-    // Color color = sectionColors[index % sectionColors.length];
     IconData icon = sectionIcons[index % sectionIcons.length]; // Get the icon
     return Container(
-      // color: color,
       padding: EdgeInsets.all(16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

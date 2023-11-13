@@ -68,9 +68,6 @@ class _ContactUsPageState extends State<ContactUsPage> {
   List<Color> sectionColors = [
   Color.fromARGB(255, 145, 188, 209),
   Color.fromARGB(255, 246, 222, 134),
-  // Colors.lightBlueAccent,
-  // Colors.amberAccent,
-  // Add more colors as needed
   ];
 
   List<IconData> sectionIcons = [
@@ -86,7 +83,6 @@ class _ContactUsPageState extends State<ContactUsPage> {
     Color color = sectionColors[index % sectionColors.length];
     IconData icon = sectionIcons[index % sectionIcons.length]; // Get the icon
     return Container(
-      // color: color,
       padding: EdgeInsets.all(16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

@@ -27,13 +27,10 @@ class _ProfileDetailPageState extends State<ProfileDetailPage> {
 
   Future<void> refreshPage() async{
     await user?.reload();
-    // await Navigator.of(context).push(MaterialPageRoute(
-    //                         builder: (context) => const ProfileDetailPage()));
   }
 
   final profilePictureKey = GlobalKey();
     String _userPhotoURL = FirebaseAuth.instance.currentUser?.photoURL ?? '';
-    // String _userName = FirebaseAuth.instance.currentUser?.displayName ?? '';
     String _userName = '';
     String _email = FirebaseAuth.instance.currentUser?.email ?? '';
     
@@ -64,21 +61,7 @@ class _ProfileDetailPageState extends State<ProfileDetailPage> {
       fetchUsername();
   }
 
-  // void updatePhotoURL(String newURL) {
-  //   // Trigger a rebuild of the profile picture widget
-  //   setState(() {
-  //     print(newURL);
-  //     _userPhotoURL = newURL;
-  //     user!.updatePhotoURL(newURL);
-
-  //   });
-  // }
-
   void navigateEditPage(Widget editForm) async {
-    // final snapshot = await dbRef.child('user/' + FirebaseAuth.instance.currentUser!.uid).get();
-    // Object? _userName = snapshot.value;
- 
-    // Navigator.of(context).push(MaterialPageRoute(builder: (context) => editForm));
             final updatedURL = await Navigator.of(context).push<String>(MaterialPageRoute(builder: (context) => editForm));
 
 
@@ -131,12 +114,6 @@ class _ProfileDetailPageState extends State<ProfileDetailPage> {
   ),
 );
     return Scaffold(
-      // appBar:AppBar(
-      //         backgroundColor: Colors.red,
-      //         elevation: 0,
-      //         title: const Text('Edit Profile'),
-      //         centerTitle: true,
-      //       ),
       body: 
         RefreshIndicator(
           onRefresh: refreshPage,

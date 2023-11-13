@@ -21,23 +21,15 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
 
 Future<void> changePassword(String currentPassword, String newPassword) async {
   try {
-    // Get the current user
     User? user = FirebaseAuth.instance.currentUser;
-
-    // Create a credential using the user's email and current password
     AuthCredential credential = EmailAuthProvider.credential(
       email: user?.email ?? '',
       password: currentPassword,
     );
-
-    // Reauthenticate the user with the current credential
     await user?.reauthenticateWithCredential(credential);
-
-    // Now, you can change the password
     await user?.updatePassword(newPassword);
     print('Password changed successfully');
   } catch (e) {
-    // Handle any errors that occur during reauthentication or password change
     print('Error changing password: $e');
   }
 }
@@ -121,7 +113,6 @@ Future<void> changePassword(String currentPassword, String newPassword) async {
                             onPressed: () {
                                 if (passwordController.text == confirmPasswordController.text) {
                                   if (passwordController.text != oldPasswordController.text) {
-                                    // Only change the password if the old password is different from the new password
                                     changePassword(oldPasswordController.text, confirmPasswordController.text);
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(content: Text('Password Successfully Changed')),

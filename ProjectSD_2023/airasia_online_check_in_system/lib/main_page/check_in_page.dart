@@ -38,7 +38,6 @@ class _CheckInPageState extends State<CheckInPage> {
 }
 
 void updateBookingStatus() {
-    // Update the status in the booking data from "Booked" to "Checked In"
     widget.bookingData['status'] = 'Checked In';
     final database = FirebaseDatabase.instance.ref();
     final userData = database.child('booking/' + widget.bookingData['bookingId']);
@@ -63,15 +62,6 @@ void updateBookingStatus() {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-          // const SizedBox(
-          //     width: 800,
-          //     child:  Text(
-          //       "Search booking ticket",
-          //       style: TextStyle(
-          //         fontSize: 25,
-          //         fontWeight: FontWeight.bold,
-          //       ),
-          //     )),
           Form(
               key: _formKey,
               child: Column(
@@ -84,12 +74,10 @@ void updateBookingStatus() {
                       height: 100,
                       width: 250,
                       child: TextFormField(
-                        // Handles Form Validation for First Name
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Please enter your full name';
                           }
-                          // You can add more validation rules here
                           return null;
                         },
                         decoration: const InputDecoration(labelText: 'Full Name'),
@@ -103,15 +91,10 @@ void updateBookingStatus() {
                       height: 100,
                       width: 250,
                       child: TextFormField(
-                        // Handles Form Validation for Last Name
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Please enter your passport';
                           } 
-                          //else if (!RegExp(r'^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$').hasMatch(value)) {
-                          //   return 'Please enter a valid email address';
-                          // }
-                          // You can add more validation rules here
                           return null;
                         },
                         decoration: const InputDecoration(labelText: ' Passport'),
@@ -160,21 +143,10 @@ void updateBookingStatus() {
                             height: 50,
                             child: ElevatedButton(
                               onPressed: (){
-                                // String updatedUsername = firstNameController.text + " " + secondNameController.text;
-                                // // Validate returns true if the form is valid, or false otherwise.
-                                //  if (_formKey.currentState!.validate() &&
-                                //     RegExp(r'^[a-zA-Z]+$').hasMatch(firstNameController.text +
-                                //         secondNameController.text)) {
-                                //   updateUserValue(updatedUsername);
-                                  // Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ProfileDetailPage()));
-                                // }
                                 if (_formKey.currentState!.validate()) {
-                                  // Form is valid, perform the search
-                                  // searchBooking();
                                   String fullName = name.text;
                                   String userPassport = passport.text;
                                   String baggageSelection = baggage;
-
                                   updateBookingStatus();
                                   print(widget.bookingData);
                                   print(widget.bookingData['status']);
@@ -186,13 +158,10 @@ void updateBookingStatus() {
                                       fullName: fullName,
                                       userPassport: userPassport,
                                       baggageSelection: baggageSelection
-                                        // Pass the flight data
                                     ),
                                   ),
                                   );
                                 }
-                                
-
                               },
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.yellow[200],

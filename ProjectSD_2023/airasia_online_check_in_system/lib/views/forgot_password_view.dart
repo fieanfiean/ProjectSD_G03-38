@@ -60,16 +60,6 @@ class _ForgotPassowrdViewState extends State<ForgotPassowrdView> {
           buildBackgroundImage(),
           Column(
         children: [
-          // TextField(
-          //   controller: _email,
-          //   enableSuggestions: false,
-          //   autocorrect: false,
-          //   keyboardType: TextInputType.emailAddress,
-          //   decoration: const InputDecoration(
-          //     hintText: 'Enter your email here'
-          //   ),
-          // ),
-
           Padding(
             padding: EdgeInsets.only(top: 40),
             child: SizedBox(
@@ -83,7 +73,6 @@ class _ForgotPassowrdViewState extends State<ForgotPassowrdView> {
                       labelText: 'Your email address'),
                   controller: _email,
                 ))),
-
           Padding(
               padding: EdgeInsets.only(top: 40),
               child: Align(
@@ -107,15 +96,6 @@ class _ForgotPassowrdViewState extends State<ForgotPassowrdView> {
                 ),
               ),
             ),
-
-          // ElevatedButton.icon(
-          //   onPressed: resetPassword, 
-          //   style: ElevatedButton.styleFrom(
-          //     minimumSize: Size.fromHeight(50),
-          //   ),
-          //   icon: Icon(Icons.email_outlined),
-          //   label: const Text('Reset password'),
-          // ),
         ]
       ),
         ],

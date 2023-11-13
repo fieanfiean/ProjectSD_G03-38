@@ -29,7 +29,6 @@ void onTabTapped(int index) {
 
 final List <Widget> _pageOptions = [
   const SearchTicketTabPage(),
-  // const HistoryTabPage(),
   const ProfileDetailPage(),
   const ProfileTabPage(),
 ];
@@ -147,17 +146,6 @@ final List <Widget> _pageOptions = [
             TextButton(
               child: const Text('Send'),
               onPressed: () {
-                // Process the user input here if needed
-                // try{
-                //   print('User input: $userInput');
-                //   final userData = database.child('enquiry/' + (_index+1).toString());
-                //   userData.set({
-                //     'email': userEmail, 
-                //     'content': userInput, 
-                //     });
-                // }on FirebaseAuthException catch(e){
-                //   print(e.code);
-                // }
                 addEntryWithIncrementedIndex(userInput);
                 Navigator.of(context).pop(); // Close the dialog when OK is pressed
               },

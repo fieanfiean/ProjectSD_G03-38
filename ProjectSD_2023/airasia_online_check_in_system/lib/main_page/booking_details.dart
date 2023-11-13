@@ -4,10 +4,7 @@ import 'package:airasia_online_check_in_system/main_page/check_in_page.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
-
-
 class ticketBookingDetailPage extends StatelessWidget {
-  // const ticketBookingDetailPage({super.key});
     final String bookingId;
     ticketBookingDetailPage({required this.bookingId});
 
@@ -54,7 +51,6 @@ Widget buildBackgroundImage() {
                       flightSnapshot.data!.snapshot.value as Map<dynamic, dynamic>; // Explicit casting
                 String userStatus = bookingData['status'];
 
-                  // Display the booking and flight details here
                   return ListView(
                     children: <Widget>[
                       ListTile(
@@ -100,11 +96,6 @@ Widget buildBackgroundImage() {
                                     ),
                                   ),
                                 );                             
-                                // if (_formKey.currentState!.validate()) {
-                                //   // Form is valid, perform the search
-                                //   searchBooking();
-                                // }
-
                               },
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.yellow[200],

@@ -1,7 +1,5 @@
 // ignore_for_file: unused_import, unnecessary_import, camel_case_types, prefer_interpolation_to_compose_strings, avoid_print, non_constant_identifier_names, sort_child_properties_last
-
 import 'dart:convert';
-
 import 'package:airasia_online_check_in_system/views/login_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -12,13 +10,11 @@ import 'package:flutter/widgets.dart';
 
 class adminPage extends StatefulWidget {
   const adminPage({super.key});
-
   @override
   State<adminPage> createState() => _adminPageState();
 }
 
 class _adminPageState extends State<adminPage> {
-
   Widget buildBackgroundImage() {
   return SizedBox(
     width: 800,
@@ -32,22 +28,9 @@ class _adminPageState extends State<adminPage> {
  Future<void> scanBoardingPass() async {
     try {
       var result = await FlutterBarcodeScanner.scanBarcode('#ff6666', 'Cancel', true, ScanMode.QR);
-      // if (result.rawContent == 'YOUR_BOARDING_PASS_DATA') {
-      //   // Update the user's status to "Boarded"
-      //   setState(() {
-      //     status = 'Boarded';
-      //   });
-      // } else {
-      //   // Handle invalid boarding pass data
-      //   // You can show an error message to the user
-      // }
+     
             print("Result is "+ result);
-            // if (result != '-1' && result.isNotEmpty) {
-              // Parse the JSON data from the result
               final decodedResult = json.decode(result);
-              // print("hi" + decodedResult.containsKey('BookingId'));
-
-              // Check if the "fullName" property exists
               if (decodedResult.containsKey('BookingId')) {
                 final BookingId = decodedResult['BookingId'];
                 print('BookingId: $BookingId');
@@ -58,11 +41,6 @@ class _adminPageState extends State<adminPage> {
               } else {
                 print('BookingId not found in the scanned data.');
               }
-            // } else {
-            //   print('No valid QR code data found.');
-            // }
-
-    
     } on FormatException {
       // Handle exception if the QR code is not formatted correctly
     } catch (e) {
@@ -113,14 +91,7 @@ class _adminPageState extends State<adminPage> {
                         ),
                 ),
                 const SizedBox(height: 20),
-              ],
-            ),
-          ),
-        ],
-      ),
-
-
-    );
+              ],),),],),);
   }
 }
 
