@@ -56,25 +56,7 @@ class _LoginViewState extends State<LoginView> {
             buildBackgroundImage(),
             Column(
               children: [
-                // TextField(
-                //   controller: _email,
-                  // enableSuggestions: false,
-                  // autocorrect: false,
-                  // keyboardType: TextInputType.emailAddress,
-                //   decoration: const InputDecoration(
-                //     hintText: 'Enter your email here'
-                //   ),
-                // ),
-              
-                // TextField(
-                //   controller: _password,
-                //   obscureText: true,
-                //   enableSuggestions: false,
-                //   autocorrect: false,
-                //   decoration: const InputDecoration(
-                //     hintText: 'Enter your password here',  
-                //   ),
-                // ),
+                
                 Padding(
                           padding: EdgeInsets.symmetric(vertical: 20),
                           child: SizedBox(
@@ -184,7 +166,6 @@ class _LoginViewState extends State<LoginView> {
                             MaterialPageRoute(
                               builder: (context) => const HomePage())
                             );
-
                         },
                         child: 
                               const Text(
@@ -200,7 +181,6 @@ class _LoginViewState extends State<LoginView> {
                     ),
                   ),
                 ),
-                
                 TextButton(
                   onPressed: () {
                     Navigator.of(context).push(
@@ -210,7 +190,6 @@ class _LoginViewState extends State<LoginView> {
                   }, 
                   child: const Text('Forgot password',style: TextStyle(color: Colors.black),),
                 ),
-
                 Padding(
                   padding: EdgeInsets.only(top: 40),
                   child: Align(
@@ -238,9 +217,7 @@ class _LoginViewState extends State<LoginView> {
                       ),
                     ),
                   ),
-                ),
-                
-                
+                ),        
               ],
             ),
           ],
