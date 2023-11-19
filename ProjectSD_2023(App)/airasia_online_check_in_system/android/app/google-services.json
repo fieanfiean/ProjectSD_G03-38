@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "975021124988",
+    "project_id": "airasia-online-check-in-system",
+    "storage_bucket": "airasia-online-check-in-system.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:975021124988:android:f1fc1fd0d8c66bb82488f9",
+        "android_client_info": {
+          "package_name": "com.example.airasia_online_check_in_system"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "975021124988-578726hlrr73eoba5e2r8vubdgebb1ae.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwOf9fjXV5_cc5t6SywbaXwKscyeOmEgE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "975021124988-578726hlrr73eoba5e2r8vubdgebb1ae.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
