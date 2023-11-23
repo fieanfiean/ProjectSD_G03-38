@@ -1,0 +1,170 @@
+{
+  "aboutUs": {
+    "about": {
+      "content": "Capital A Berhad, operating as AirAsia is a Malaysian multinational low-cost airline headquartered near Kuala Lumpur, Malaysia. It is the largest airline in Malaysia by fleet size and destinations. AirAsia operates scheduled domestic and international flights to more than 165 destinations spanning 25 countries.",
+      "title": "About"
+    },
+    "mision": {
+      "content": "To be the best company to work for whereby employees are treated as part of a big family",
+      "title": "Mision"
+    },
+    "objective": {
+      "content": "Everyone can fly",
+      "title": "Objective"
+    },
+    "vision": {
+      "content": "To be the largest low cost airline in Asia and serving the 3 billion people who are currently underserved with poor connectivity and high fares.",
+      "title": "Vision"
+    }
+  },
+  "booking": {
+    "081020231646": {
+      "bookingId": "081020231646",
+      "email": "ooichristopher404@gmail.com",
+      "flightId": "AK2034",
+      "seat": "8C",
+      "status": "Booked"
+    },
+    "141120031931": {
+      "bookingId": "141120031931",
+      "email": "christopherjun@graduate.utm.my",
+      "flightId": "AK2035",
+      "seat": "6A",
+      "status": "Boarding"
+    },
+    "211020231505": {
+      "bookingId": "211020231505",
+      "email": "chris.ooi2801@gmail.com",
+      "flightId": "AK2035",
+      "seat": "7A",
+      "status": "Booked"
+    },
+    "211020231707": {
+      "bookingId": "211020231707",
+      "email": "aoaq1121@gmail.com",
+      "flightId": "AK2034",
+      "seat": "7C",
+      "status": "Booked"
+    }
+  },
+  "contactUs": {
+    "address": {
+      "content": "KLIA2 Level 3, Departure Hall Main Terminal Building, Kuala Lumpur International Airport 2 (KLIA2), 64000 Sepang, Selangor, Malaysia. AirAsia Sales Centre (KL Sentral), Lot 4, Level 2, Stesen Sentral, 50470 Kuala Lumpur, Malaysia.",
+      "title": "Address"
+    },
+    "business": {
+      "content": "9a.m. to 6p.m.",
+      "title": "Business Hour"
+    },
+    "email": {
+      "content": "airasia@gmail.com",
+      "title": "Email"
+    },
+    "phone": {
+      "content": "+60123456789",
+      "title": "Phone"
+    }
+  },
+  "enquiry": {
+    "1": {
+      "content": "啊",
+      "email": "ooichristopher404@gmail.com"
+    },
+    "2": {
+      "content": "得得",
+      "email": "ooichristopher404@gmail.com"
+    },
+    "3": {
+      "content": "hi",
+      "email": "ooichristopher404@gmail.com"
+    },
+    "4": {
+      "content": "what is the id?",
+      "email": "ooichristopher404@gmail.com"
+    },
+    "5": {
+      "content": "hi",
+      "email": "christopherooi2801@gmail.com"
+    },
+    "6": {
+      "content": "i have a question",
+      "email": "christopherjun@graduate.utm.my"
+    },
+    "index": 6
+  },
+  "flight": {
+    "AK2034": {
+      "arrivalTime": 1220,
+      "departureDate": "20/10/2023",
+      "departureTime": 1035,
+      "destination": "Penang",
+      "flightId": "AK2034",
+      "passenger": 80
+    },
+    "AK2035": {
+      "arrivalTime": 1435,
+      "departureDate": "21/10/2023",
+      "departureTime": 1240,
+      "destination": "Johor",
+      "flightId": "AK2035",
+      "passenger": 76
+    }
+  },
+  "user": {
+    "0S45giRyZHPwTGgCQlMDCrsY9KT2": {
+      "email": "ooichristopher404@gmail.com",
+      "type": "passenger",
+      "uid": "0S45giRyZHPwTGgCQlMDCrsY9KT2",
+      "username": "Christopher ooi"
+    },
+    "5iCiZNMK1xgGJaWpJ6B4xxtEwp43": {
+      "email": "AhmadAmmarRZNE@gmail.com",
+      "type": "staff",
+      "uid": "5iCiZNMK1xgGJaWpJ6B4xxtEwp43",
+      "username": "ammar"
+    },
+    "9MDivSfm7VMqthpaRn1m1H2KY0P2": {
+      "email": "AhmadAmmarRZNE@gmail.com",
+      "type": "staff",
+      "uid": "9MDivSfm7VMqthpaRn1m1H2KY0P2",
+      "username": "staff1"
+    },
+    "AZ7k6HicTPVo5Wake2yaGTRuNPB3": {
+      "email": "ooic9544@gmail.com",
+      "password": "123456",
+      "type": "admin",
+      "uid": "AZ7k6HicTPVo5Wake2yaGTRuNPB3",
+      "username": "fieanfiean"
+    },
+    "V8vUPEb5bmcyDjc13NBtfCbmPH32": {
+      "email": "muhdmudabbir126@gmail.com",
+      "type": "passenger",
+      "uid": "V8vUPEb5bmcyDjc13NBtfCbmPH32",
+      "username": "Molly"
+    },
+    "ZYN49DZoFeP0owzIfHgVK7FHxz12": {
+      "email": "muviniishdevar@graduate.utm.my",
+      "type": "passenger",
+      "uid": "ZYN49DZoFeP0owzIfHgVK7FHxz12",
+      "username": "Muviniish"
+    },
+    "eWbPuZv6s3X8BZHOeCfzvaXIGQO2": {
+      "email": "muviniish15@gmail.com",
+      "type": "passenger",
+      "uid": "eWbPuZv6s3X8BZHOeCfzvaXIGQO2",
+      "username": "Muviniish2"
+    },
+    "lbvLrMhxOOeZSQ5gAb2jMGOZGdO2": {
+      "email": "angieong1115@gmail.com",
+      "type": "passenger",
+      "uid": "lbvLrMhxOOeZSQ5gAb2jMGOZGdO2",
+      "username": "User"
+    },
+    "oEuhZoCwJ8Xao4AXq09BRpiWLzA2": {
+      "email": "christopherjun@graduate.utm.my",
+      "type": "passenger",
+      "uid": "oEuhZoCwJ8Xao4AXq09BRpiWLzA2",
+      "username": "user one"
+    }
+  }
+}
